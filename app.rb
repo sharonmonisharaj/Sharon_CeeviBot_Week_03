@@ -38,7 +38,7 @@ require_relative './models/award'
 # enable sessions for this project
 enable :sessions
 
-client = Twilio::REST::Client.new ACf63e3bc7ff3a4e256df14d9a3bcd18f2, 528ca684b9af986980ec8b452540ae35
+client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
 
 
 # -------------------------------------------------------------------------------------------
