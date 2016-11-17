@@ -15,10 +15,6 @@ GEM
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
-    behance (0.6.0)
-      faraday (~> 0.8)
-      faraday_middleware (~> 0.8)
-      json (~> 1.8.1)
     builder (3.2.2)
     concurrent-ruby (1.0.2)
     domain_name (0.5.20161021)
@@ -98,7 +94,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   activesupport
-  behance
   builder
   bundler
   dotenv
