@@ -167,10 +167,10 @@ get '/incoming_sms' do
   elsif body.include? "companies" or body.include? "company"  
     message = "Sharon has worked at: "
     WorkDetail.all.each_with_index do |record,index|
-      message += "\n#{index+1}. #{record.company}" 
+      message += "\n\n#{index+1}. #{record.company}" 
     end
  
-  elsif body.include? "Hidesign" or body.include? "leather" or body == "first internship" or body.include? "first"
+  elsif body == "Hidesign" or body.include? "leather" or body == "first internship" or body.include? "first"
     message = "Sharon worked at #{work_detail_array[0].company} as #{work_detail_array[0].job_title} from #{work_detail_array[0].started_on} to #{work_detail_array[0].completed_on} in #{work_detail_array[0].location}."
  
   elsif body == "Design Tech" or body.include? "Germany" or body == "second internship" or body.include? "second"
