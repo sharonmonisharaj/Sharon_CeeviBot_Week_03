@@ -165,9 +165,9 @@ get '/incoming_sms' do
   work_detail_array = WorkDetail.all
 
   elsif body.include? "companies" or body.include? "company"  
-    message = "Sharon has worked at "
+    message = "Sharon has worked at: "
     WorkDetail.all.each_with_index do |record,index|
-      message += "<\n>#{index+1}. #{record.company} ," 
+      message += "\n#{index+1}. #{record.company} ," 
     end
  
   elsif body.include? "Hidesign" or body.include? "leather" or body == "first internship" or body.include? "first"
