@@ -120,8 +120,8 @@ get '/incoming_sms' do
   
 # If the user wants to play a game!
     
-  elsif body == "play"
-    session["last_context"] = "play"
+  elsif body == "quiz"
+    session["last_context"] = "quiz"
     session["guess_it"] = rand(1...5)
     message = "Guess what number I'm thinking of. It's between 1 and 5"
   elsif session["last_context"] == "play"
@@ -177,12 +177,7 @@ get '/incoming_sms' do
     end
     
   elsif body.include? "internship"
-    message = "Sharon has interned at the following three companies:"
-    
-    WorkDetail.all.each_with_index do |record,index|
-      while index<3
-      message += "\n\n#{index+1}. #{record.company}\n\n#{record.location}" 
-    end
+    message = "Sharon has interned at the following three companies:\n\n1. #{work_detail_array[0].company}\n#{work_detail_array[0].location}\n\n2. #{work_detail_array[1].company}\n#{work_detail_array[1].location}\n\n 3. #{work_detail_array[2].company}\n#{work_detail_array[2].location}" 
     end
  
   elsif body.include? "Hidesign" or body.include? "first"
