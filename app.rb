@@ -291,10 +291,10 @@ private
 
 GREETINGS = ["Hi","Yo", "Hey","Howdy", "Hello", "Ahoy", "‘Ello", "Aloha", "Hola", "Bonjour", "Hallo", "Ciao", "Konnichiwa"]
 
-COMMANDS = "who, what, where, when, why and play."
+COMMANDS = "who, what, where, when, why, age, marital status, parents, job, internship, education, interests, skills, awards or quiz."
 
 def get_commands
-  error_prompt = ["You can say: ", "Try asking: "].sample
+  error_prompt = ["You could ask about ", "Try asking about ", "You can ask me about ", "I can tell you about ", "I'm awesome at answering questions about "].sample
   
   return error_prompt + COMMANDS
 end
@@ -312,6 +312,6 @@ def get_help_message
 end
 
 def error_response
-  error_prompt = ["I didn't catch that.", "Hmmm I don't know that word.", "What did you say to me? "].sample
+  error_prompt = ["I'm sorry, I didn't catch that.", "Hmmm... I don't know that word.", "Could you please rephrase that? "].sample
   error_prompt + " " + get_commands
 end
