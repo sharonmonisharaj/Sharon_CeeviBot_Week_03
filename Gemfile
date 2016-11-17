@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+Isource 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'shotgun'
