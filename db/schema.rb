@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117033057) do
+ActiveRecord::Schema.define(version: 20161117221614) do
 
   create_table "awards", force: :cascade do |t|
     t.string   "title"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20161117033057) do
     t.datetime "completed_on"
     t.string   "job_description"
     t.string   "location"
+    t.boolean  "internship"
   end
 
 end
