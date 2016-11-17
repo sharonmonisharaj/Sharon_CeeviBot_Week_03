@@ -30,3 +30,5 @@ gem 'giphy'
 gem 'stock_quote'
 gem 'dotenv'
 gem 'httparty'
+
+ruby '2.2.4'
