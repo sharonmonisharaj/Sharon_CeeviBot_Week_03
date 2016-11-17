@@ -113,7 +113,7 @@ get '/incoming_sms' do
   
 # -------------------------------------------------------------------------------------------
   
-  if body.include? "hi" or body.include? "hello" or body.include? "hey" or body.include? "hola" or body.include? "howdy" or body.include? "aloha"
+  if body == "hi" or body == "hello" or body == "hey" or body == "hola" or body == "howdy" or body == "aloha"
     message = get_about_message
     
 # -------------------------------------------------------------------------------------------
@@ -304,11 +304,11 @@ def get_greeting
 end
 
 def get_about_message
-  get_greeting + "! I\'m Sharon's CeeviBot 🤖! " + get_commands
+  "\n\n"get_greeting + "! I\'m Sharon's CeeviBot 🤖! " + get_commands
 end
 
 def get_help_message
-  "You're stuck, eh? " + get_commands
+  "\n\nYou're stuck, eh? " + get_commands
 end
 
 def error_response
