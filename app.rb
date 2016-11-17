@@ -183,7 +183,7 @@ get '/incoming_sms' do
     end
 
   elsif body.include? "internship"
-    work_details = WorkDetail.all #.where( internship: true )
+    work_details = WorkDetail.all.where( internship: true )
     message = "Sharon has interned at the following #{ work_details.count } companies:\n\n"
     work_details.each_with_index do |detail,index|
       message += "#{index+1}. #{detail.company} \n #{detail.location}\n\n"
@@ -230,18 +230,22 @@ get '/incoming_sms' do
       message += "\n\n#{index+1}. #{record.program}\n#{record.institute}\n#{record.location}\n#{record.score}\n" 
     end
     
-  education_detail_array = EducationDetail.all
-    
   elsif body.include? "school"
-    message = "Sharon's class 10 and 12 board examination details:\n\n1. #{education_detail_array[0].program}\n#{education_detail_array[0].institute}\n#{education_detail_array[0].location}\n#{education_detail_array[0].completed_on.strftime("%B %y")}\n#{education_detail_array[0].score}\n\n2. #{education_detail_array[1].program}\n#{education_detail_array[1].institute}\n#{education_detail_array[1].location}\n#{education_detail_array[1].completed_on}\n#{education_detail_array[1].score}"
+    message = ""
+    education_detail_array = EducationDetail.all.where( college: false )
+    message += "Sharon's class 10 and 12 board examination details:\n\n"
+    message += "1. #{education_detail_array[0].program}\n#{education_detail_array[0].institute}\n#{education_detail_array[0].location}\n#{education_detail_array[0].completed_on.strftime("%B %Y")}\n#{education_detail_array[0].score}\n\n2. #{education_detail_array[1].program}\n#{education_detail_array[1].institute}\n#{education_detail_array[1].location}\n#{education_detail_array[1].completed_on}\n#{education_detail_array[1].score}"
 
   elsif body.include? "college"
+    education_detail_array = EducationDetail.all.where( college: true )
     message = "Sharon's college education:\n\n1. #{education_detail_array[2].program}\n#{education_detail_array[2].institute}\n#{education_detail_array[2].location}\n#{education_detail_array[2].completed_on}\n#{education_detail_array[2].score}\n\n2. #{education_detail_array[3].program}\n#{education_detail_array[3].institute}\n#{education_detail_array[3].location}\n#{education_detail_array[3].completed_on}\n#{education_detail_array[3].score}"
    
   elsif body.include? "undergrad" or body.include? "UG" or body.include? "bachelors"
+    education_detail_array = EducationDetail.all
     message = "Sharon's Bachelor's degree details:\n\n #{education_detail_array[2].program}\n#{education_detail_array[2].institute}\n#{education_detail_array[2].location}\n#{education_detail_array[2].completed_on}\n#{education_detail_array[2].score}"
 
   elsif body.include? "master's" or body.include? "masters" or body.include? "graduate"
+    education_detail_array = EducationDetail.all
     message = "Sharon's Master's degree details:\n\n #{education_detail_array[3].program}\n#{education_detail_array[3].institute}\n#{education_detail_array[3].location}\n#{education_detail_array[3].completed_on}\n#{education_detail_array[3].score}"
   
 # -------------------------------------------------------------------------------------------

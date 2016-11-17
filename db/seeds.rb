@@ -191,28 +191,32 @@ EducationDetail.create!([{
   institute: "Kendriya Vidyalaya",
   completed_on: Time.new(2007, 4),
   score: "95%",
-  location: "Pondicherry, India"
+  location: "Pondicherry, India",
+  college: "false"
 },
 {
   program: "Class 12 Board Examination",
   institute: "St. Patrick Matriculation Higher Secondary School",
   completed_on: Time.new(2009, 4),
   score: "93.4%",
-  location: "Pondicherry, India"
+  location: "Pondicherry, India",
+  college: "false"
 },
 {
   program: "Professional Educational Diploma in Product Design",
   institute: "National Institute of Design",
   completed_on: Time.new(2013, 12),
   score: "GPA 3.86",
-  location: "Ahmedabad, India"
+  location: "Ahmedabad, India",
+  college: "true"
 },
 {
   program: "Master's in Human-Computer Interaction",
   institute: "Carnegie Mellon University",
   completed_on: Time.new(2016, 8),
   score: "GPA 3.80",
-  location: "Pittsburgh, USA"
+  location: "Pittsburgh, USA",
+  college: "true"
 }])
 
 p "Created #{EducationDetail.count} education details"
