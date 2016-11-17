@@ -231,23 +231,91 @@ get '/incoming_sms' do
     end
     
   elsif body.include? "school"
-    message = ""
+    message = "Sharon's class 10 and 12 board examination details:\n\n"
     education_detail_array = EducationDetail.all.where( college: false )
-    message += "Sharon's class 10 and 12 board examination details:\n\n"
-    message += "1. #{education_detail_array[0].program}\n#{education_detail_array[0].institute}\n#{education_detail_array[0].location}\n#{education_detail_array[0].completed_on.strftime("%B %Y")}\n#{education_detail_array[0].score}\n\n2. #{education_detail_array[1].program}\n#{education_detail_array[1].institute}\n#{education_detail_array[1].location}\n#{education_detail_array[1].completed_on}\n#{education_detail_array[1].score}"
+    education_detail_array.each_with_index do |record,index|
+    message += "#{index+1}. #{record.program}\n#{record.institute}\n#{record.location}\n"
+    message += "COMPLETED ON: #{record.completed_on.strftime("%B %Y")}\n"
+    message += "SCORE: #{record.score}\n"
+  end
 
   elsif body.include? "college"
+    message = "Sharon's college education details:\n\n"
     education_detail_array = EducationDetail.all.where( college: true )
-    message = "Sharon's college education:\n\n1. #{education_detail_array[2].program}\n#{education_detail_array[2].institute}\n#{education_detail_array[2].location}\n#{education_detail_array[2].completed_on}\n#{education_detail_array[2].score}\n\n2. #{education_detail_array[3].program}\n#{education_detail_array[3].institute}\n#{education_detail_array[3].location}\n#{education_detail_array[3].completed_on}\n#{education_detail_array[3].score}"
-   
-  elsif body.include? "undergrad" or body.include? "UG" or body.include? "bachelors"
-    education_detail_array = EducationDetail.all
-    message = "Sharon's Bachelor's degree details:\n\n #{education_detail_array[2].program}\n#{education_detail_array[2].institute}\n#{education_detail_array[2].location}\n#{education_detail_array[2].completed_on}\n#{education_detail_array[2].score}"
-
-  elsif body.include? "master's" or body.include? "masters" or body.include? "graduate"
-    education_detail_array = EducationDetail.all
-    message = "Sharon's Master's degree details:\n\n #{education_detail_array[3].program}\n#{education_detail_array[3].institute}\n#{education_detail_array[3].location}\n#{education_detail_array[3].completed_on}\n#{education_detail_array[3].score}"
+    education_detail_array.each_with_index do |record,index|
+    message += "#{index+1}. #{record.program}\n#{record.institute}\n#{record.location}\n"
+    message += "COMPLETED ON: #{record.completed_on.strftime("%B %Y")}\n"
+    message += "SCORE: #{record.score}\n"
+  end
   
+  elsif body.include? "undergrad" or body.include? "ug" or body.include? "bachelors"
+    message = ""
+    education_detail_array = EducationDetail.all.where( "institute LIKE ?", "%national institute of design%" )
+    education_detail_array.each_with_index do |record,index|
+    message += "Sharon's Bachelor's Study Details:\n\n"
+    message += "#{record.program}\n#{record.institute}\n#{record.location}\n"
+    message += "COMPLETED ON: #{record.completed_on.strftime("%B %Y")}\n"
+    message += "SCORE: #{record.score}\n"
+  end
+   
+  elsif body.include? "master\'s" or body.include? "masters" or body.include? "graduate"
+    message = ""
+    education_detail_array = EducationDetail.all.where( "institute LIKE ?", "%carnegie mellon university%" )
+    education_detail_array.each_with_index do |record,index|
+    message += "Sharon's Master's Study Details:\n\n"
+    message += "#{record.program}\n#{record.institute}\n#{record.location}\n"
+    message += "COMPLETED ON: #{record.completed_on.strftime("%B %Y")}\n"
+    message += "SCORE: #{record.score}\n"
+  end
+  
+# -------------------------------------------------------------------------------------------
+
+# Retrieving information from the interests table
+
+    elsif body.include? "interest" or body.include? "enjoy" or body.include? "like"  
+      message = "Here are Sharon's interests!\n\n"
+      Interest.all.each_with_index do |record,index|
+        message += "\n\n#{record.title.upcase}\n#{record.description}\n" 
+      end
+      
+# -------------------------------------------------------------------------------------------
+
+# Retrieving information from the skills table
+
+  elsif body.include? "skill" or body.include? "expert" 
+    message = "Here are Sharon's skills!\n\n"
+    Skill.all.each_with_index do |record,index|
+      message += "\n\n#{record.title.upcase}\n#{record.description}\n" 
+    end
+    
+# -------------------------------------------------------------------------------------------
+
+# Retrieving information from the awards table
+
+  elsif body.include? "award" or body.include? "honor" or body.include? "accomplish"
+    message = "Here are Sharon's awards!\n\n"
+    Award.all.each_with_index do |record,index|
+      message += "#{index+1}. \n\n#{record.title}\n#{record.description}\nAWARDED ON: #{record.awarded_on.strftime("%B %Y")}" 
+    end
+    
+# -------------------------------------------------------------------------------------------
+
+# Retrieving information from the projects table
+
+  elsif body.include? "project" or body.include? "task"
+    message = "Here are Sharon's projects!\n\n"
+    Project.all.each_with_index do |record,index|
+      message += "#{index+1}. \n\n#{record.title}\n"
+      message += "Portfolio Link: #{record.url}\n\n" 
+    end
+    
+  # elsif body.include? "random"
+  #   message = "Here's an interesting projects that Sharon has worked on!\n\n"
+  #   Project.all.each do |i|
+  #     message += "\n\n#{i.title}\n\n#{i.description}\n\n"
+  #     message += "Portfolio Link: #{i.url}\n\n"
+  #   end
+      
 # -------------------------------------------------------------------------------------------
 
 # Connecting to Behance API using the gem httparty.
