@@ -166,7 +166,7 @@ get '/incoming_sms' do
 
   elsif body.include? "companies" or body.include? "company"  
     message = "Sharon has worked at "
-    WorkDetail.all.each_with_index do |index, record|
+    WorkDetail.all.each_with_index do |record,index|
       message += "<br/>#{index+1}. #{record.company} ," 
     end
  
