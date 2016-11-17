@@ -138,6 +138,8 @@ get '/incoming_sms' do
     end
     
 # -------------------------------------------------------------------------------------------
+  
+# Hard-coded SMS responses
     
   elsif body.include? "who"
     message = "I was created by Sharon."
@@ -153,16 +155,22 @@ get '/incoming_sms' do
   
   elsif body.include? "why"    
     message = "I was created to enable anyone interested to know more about Sharon's Curriculum Vitae."
-  
-  elsif body.include? "companies" or body.include? "company"  
-
- message = "Sharon has worked at: "
- WorkDetail.all.each do |wd|
-   message += wd.company + ", "
- end
-
-    # workexperience[i].username
     
+# -------------------------------------------------------------------------------------------
+
+# Retrieving information from the linked database to be used as SMS responses.
+
+  elsif body.include? "companies" or body.include? "company"  
+    message = "Sharon has worked at "
+    WorkDetail.all.each do |wd|
+      message += wd.company + ", "
+    end
+ 
+  elsif body.include? "Hidesign" or body.include? "leather"
+    work_detail_array = WorkDetail.all
+    message = "Sharon worked at #{WorkDetail.find[0].company} as #{WorkDetail.find[0].job_title} from #{WorkDetail.find[0].started_on} to #{WorkDetail.find[0].completed_on} in #{WorkDetail.find[0].location}."
+ 
+
 # -------------------------------------------------------------------------------------------
 
 # Connecting to Behance API using the gem httparty.
