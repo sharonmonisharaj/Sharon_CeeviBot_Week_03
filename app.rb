@@ -142,19 +142,23 @@ get '/incoming_sms' do
 # Hard-coded SMS responses
     
   elsif body.include? "who"
-    message = "I was created by Sharon."
+    message = "Im a bot created by Sharon. I'm her favorite one!"
     
-  elsif body.include? "what" or body.include? "purpose" or body.include? "do" or body.include? "your name"
-    message = "I'm CeeviBot! It is my life's goal to tell anyone who would listen about Sharon's exciting Curriculum Vitae! Ask me anything you would like to know!"
+  elsif body.include? "purpose" or body.include "goal"
+    message = "It is my life's goal to tell anyone who would listen about Sharon's exciting Curriculum Vitae! Ask me anything you would like to know!"
   
   elsif body.include? "when" or body.include? "time"    
-    message = Time.now.strftime( "It's %A %B %e, %Y")
+    #message = Time.now.strftime( "It's %A %B %e, %Y")
+    message = "I was created on November 6, 2016."
   
   elsif body.include? "where"    
     message = "I was created in Pittsburgh when Sharon was pursuing her Master's degree in Human-Computer Interaction at Carnegie Mellon University."
   
   elsif body.include? "why"    
-    message = "I was created to enable anyone interested to know more about Sharon's Curriculum Vitae."
+    message = "Sharon created me to help you learn more about her and what she has to offer to your company."
+    
+  elsif body.include? "time"    
+    message = Time.now.strftime( "It's %A %B %e, %Y")
     
 # -------------------------------------------------------------------------------------------
 # Retrieving information from the linked database to be used as SMS responses.
@@ -173,10 +177,9 @@ get '/incoming_sms' do
     WorkDetail.all.each_with_index do |record,index|
       message += "\n\n#{index+1}. #{record.company}\n\n#{record.job_description}" 
     end
-    
-  work_detail_array = WorkDetail.all
   
   elsif body.include? "internship"
+    work_detail_array = WorkDetail.all
     message = "Sharon has interned at the following three companies:\n\n1. #{work_detail_array[0].company}\n#{work_detail_array[0].location}\n\n2. #{work_detail_array[1].company}\n#{work_detail_array[1].location}\n\n 3. #{work_detail_array[2].company}\n#{work_detail_array[2].location}"
  
   elsif body.include? "Hidesign" or body.include? "first"
