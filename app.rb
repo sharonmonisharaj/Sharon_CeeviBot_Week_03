@@ -166,6 +166,22 @@ get '/incoming_sms' do
 
 # Retrieving information from the work_details table
 
+  elsif body == "internship"
+    work_detail_array = WorkDetail.all
+    message = "Sharon has interned at the following three companies:\n\n1. #{work_detail_array[0].company}\n#{work_detail_array[0].location}\n\n2. #{work_detail_array[1].company}\n#{work_detail_array[1].location}\n\n 3. #{work_detail_array[2].company}\n#{work_detail_array[2].location}"
+
+elsif body == "Hidesign"
+  message = "Sharon worked at #{work_detail_array[0].company} as #{work_detail_array[0].job_title} from #{work_detail_array[0].started_on} to #{work_detail_array[0].completed_on} in #{work_detail_array[0].location}."
+
+elsif body.include? "Design Tech"
+  message = "Sharon worked at #{work_detail_array[1].company} as #{work_detail_array[1].job_title} from #{work_detail_array[1].started_on} to #{work_detail_array[1].completed_on} in #{work_detail_array[1].location}."
+  
+elsif body.include? "Honeywell"
+  message = "Sharon worked at #{work_detail_array[2].company} as #{work_detail_array[2].job_title} from #{work_detail_array[2].started_on} to #{work_detail_array[2].completed_on} in #{work_detail_array[2].location}."
+  
+elsif body.include? "Trimble"
+  message = "Sharon worked at #{work_detail_array[3].company} as #{work_detail_array[3].job_title} from #{work_detail_array[3].started_on} to #{work_detail_array[3].completed_on} in #{work_detail_array[3].location}."
+
   elsif body.include? "companies" or body.include? "company"  
     message = "Sharon has worked at: "
     WorkDetail.all.each_with_index do |record,index|
@@ -178,23 +194,6 @@ get '/incoming_sms' do
       message += "\n\n#{index+1}. #{record.company}\n\n#{record.job_description}" 
     end
   
-  elsif body == "internship"
-    work_detail_array = WorkDetail.all
-    message = "Sharon has interned at the following three companies:\n\n1. #{work_detail_array[0].company}\n#{work_detail_array[0].location}\n\n2. #{work_detail_array[1].company}\n#{work_detail_array[1].location}\n\n 3. #{work_detail_array[2].company}\n#{work_detail_array[2].location}"
- 
-  elsif body == "Hidesign" or body.include? "first"
-    message = "Sharon worked at #{work_detail_array[0].company} as #{work_detail_array[0].job_title} from #{work_detail_array[0].started_on} to #{work_detail_array[0].completed_on} in #{work_detail_array[0].location}."
- 
-  elsif body.include? "Design Tech" or body.include? "Germany" or body.include? "second"
-    message = "Sharon worked at #{work_detail_array[1].company} as #{work_detail_array[1].job_title} from #{work_detail_array[1].started_on} to #{work_detail_array[1].completed_on} in #{work_detail_array[1].location}."
-    
-  elsif body.include? "Honeywell" or body == "third internship" or body.include? "third"
-    message = "Sharon worked at #{work_detail_array[2].company} as #{work_detail_array[2].job_title} from #{work_detail_array[2].started_on} to #{work_detail_array[2].completed_on} in #{work_detail_array[2].location}."
-    
-  elsif body.include? "Trimble" or body == "full time" or body.include? "last"
-    message = "Sharon worked at #{work_detail_array[3].company} as #{work_detail_array[3].job_title} from #{work_detail_array[3].started_on} to #{work_detail_array[3].completed_on} in #{work_detail_array[3].location}."
-
-
 # -------------------------------------------------------------------------------------------
 
 # Connecting to Behance API using the gem httparty.
