@@ -308,7 +308,7 @@ def get_about_message
 end
 
 def get_help_message
-  "\n\nYou're stuck, eh? " + get_commands
+  "You're stuck, eh? " + get_commands
 end
 
 def error_response
