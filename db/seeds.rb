@@ -150,6 +150,7 @@ WorkDetail.create!([{
   completed_on: Time.new(2011, 6),
   job_description: "As part of a campaign by Hidesign called 'Art of Reuse' , the task was to design a dustbin and a stool for customers, to be used in all the Hidesign showrooms. The materials to be used for this purpose were to be scrap leather produced as a by-product in the bag-making unit and recycled brass and wood. Images available in my portfolio. Please click on the link to view the same.",
   location: "Pondicherry, India" 
+  internship: "true"
 },
 {
   job_title: "Product Design Intern",
@@ -158,6 +159,7 @@ WorkDetail.create!([{
   completed_on: Time.new(2012, 7),
   job_description: "Actively involved in the process of product styling from the sketching stage, through 3D modeling and digital rendering to process documentation.",
   location: "Ammerbuch, Germany"
+  internship: "true"
 },
 {
   job_title: "Interaction Design Intern",
@@ -166,6 +168,7 @@ WorkDetail.create!([{
   completed_on: Time.new(2013, 8),
   job_description: "Final year project in the field of user interface and service design, in the context of connectivity applications to enhance air passenger experience.",
   location: "Bangalore, India"
+  internship: "true"
 },
 {
   job_title: "User Experience Designer",
@@ -174,6 +177,7 @@ WorkDetail.create!([{
   completed_on: Time.new(2016, 6),
   job_description: "Actively involved in all stages of the mobile application design process starting from interaction with the client, writing use-cases, designing workflows, wireframes, high-fidelity mockups and icons, workflow user-testing and user-experience testing.",
   location: "Chennai, India"
+  internship: "false"
 }])
 
 p "Created #{WorkDetail.count} work details"

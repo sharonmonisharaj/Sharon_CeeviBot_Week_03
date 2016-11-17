@@ -181,24 +181,45 @@ get '/incoming_sms' do
     WorkDetail.all.each_with_index do |record,index|
       message += "\n\n#{index+1}. #{record.company}\n\n#{record.job_description}" 
     end
-    
-  work_detail_array = WorkDetail.all
-    
+
   elsif body.include? "internship"
-    message = "Sharon has interned at the following three companies:\n\n1. #{work_detail_array[0].company}\n#{work_detail_array[0].location}\n\n2. #{work_detail_array[1].company}\n#{work_detail_array[1].location}\n\n 3. #{work_detail_array[2].company}\n#{work_detail_array[2].location}"
+    work_details = WorkDetail.all #.where( internship: true )
+    message = "Sharon has interned at the following #{ work_details.count } companies:\n\n"
+    work_details.each_with_index do |detail,index|
+      message += "#{index+1}. #{detail.company} \n #{detail.location}\n\n"
+    end
 
-  elsif body.include? "Hidesign"
-    message = "Sharon worked at #{work_detail_array[0].company} as #{work_detail_array[0].job_title} from #{work_detail_array[0].started_on} to #{work_detail_array[0].completed_on} in #{work_detail_array[0].location}."
-
-  elsif body.include? "Design Tech" or body.include? "Germany" or body.include? "abroad"
-    message = "Sharon worked at #{work_detail_array[1].company} as #{work_detail_array[1].job_title} from #{work_detail_array[1].started_on} to #{work_detail_array[1].completed_on} in #{work_detail_array[1].location}."
-  
-  elsif body.include? "Honeywell"
-    message = "Sharon worked at #{work_detail_array[2].company} as #{work_detail_array[2].job_title} from #{work_detail_array[2].started_on} to #{work_detail_array[2].completed_on} in #{work_detail_array[2].location}."
-  
-  elsif body.include? "Trimble"
-    message = "Sharon worked at #{work_detail_array[3].company} as #{work_detail_array[3].job_title} from #{work_detail_array[3].started_on} to #{work_detail_array[3].completed_on} in #{work_detail_array[3].location}."
+  elsif body.include? "hidesign"
+    message = ""
+    work_details = WorkDetail.all.where( "company LIKE ?", "%hidesign%" )
+    work_details.each_with_index do |record,index|
+      message += "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}.\n\n"
+      message += "JOB DESCRIPTION:\n #{record.job_description}"
+    end
     
+  elsif body == "designtech" or body.include? "germany" or body.include? "abroad"
+    message = ""
+    work_details = WorkDetail.all.where( "company LIKE ?", "%design tech%" )
+    work_details.each_with_index do |record,index|
+      message += "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}.\n\n"
+      message += "JOB DESCRIPTION:\n #{record.job_description}"
+    end
+    
+  elsif body.include? "honeywell"    
+    message = ""
+    work_details = WorkDetail.all.where( "company LIKE ?", "%honeywell%" )
+    work_details.each_with_index do |record,index|
+      message += "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}.\n\n"
+      message += "JOB DESCRIPTION:\n #{record.job_description}"
+    end
+    
+  elsif body.include? "trimble"    
+    message = ""
+    work_details = WorkDetail.all.where( "company LIKE ?", "%trimble%" )
+    work_details.each_with_index do |record,index|
+      message += "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}.\n\n"
+      message += "JOB DESCRIPTION:\n #{record.job_description}"
+    end
 # -------------------------------------------------------------------------------------------
 
 # Retrieving information from the education_details table
