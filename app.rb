@@ -168,7 +168,7 @@ get '/incoming_sms' do
  
   elsif body.include? "Hidesign" or body.include? "leather"
     work_detail_array = WorkDetail.all
-    message = "Sharon worked at #{WorkDetail.find[0].company} as #{WorkDetail.find[0].job_title} from #{WorkDetail.find[0].started_on} to #{WorkDetail.find[0].completed_on} in #{WorkDetail.find[0].location}."
+    message = "Sharon worked at #{work_detail_array[0].company} as #{work_detail_array[0].job_title} from #{work_detail_array[0].started_on} to #{work_detail_array[0].completed_on} in #{work_detail_array[0].location}."
  
 
 # -------------------------------------------------------------------------------------------
