@@ -234,25 +234,25 @@ get '/incoming_sms' do
     get_personal_info_from_behance
     
   elsif body == "projects"
-    message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/projects?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
+    message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/projects?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
     
   elsif body == "project"
-    message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/projects?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd").sample
+    message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/projects?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR").sample
     
   elsif body.include? "appreciation"
-    message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/appreciations?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
+    message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/appreciations?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
   
   elsif body.include? "experience"
-    message = HTTParty.get("https://www.behance.net/v2/users/sharonmonisharaj/work_experience?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
+    message = HTTParty.get("https://www.behance.net/v2/users/sharonmonisharaj/work_experience?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
   
   elsif body.include? "following"
-    message = HTTParty.get("http://www.behance.net/v2/users/sharonmonisharaj/following?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
+    message = HTTParty.get("http://www.behance.net/v2/users/sharonmonisharaj/following?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
     
   elsif body.include? "followers"
-    message = HTTParty.get("http://www.behance.net/v2/users/sharonmonisharaj/followers?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
+    message = HTTParty.get("http://www.behance.net/v2/users/sharonmonisharaj/followers?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
     
   elsif body.include? "statistics" or body.include? "stats"
-    message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/stats?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
+    message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/stats?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
     
 # -------------------------------------------------------------------------------------------
     
