@@ -157,19 +157,30 @@ get '/incoming_sms' do
     message = "I was created to enable anyone interested to know more about Sharon's Curriculum Vitae."
     
 # -------------------------------------------------------------------------------------------
-
 # Retrieving information from the linked database to be used as SMS responses.
+# -------------------------------------------------------------------------------------------
+
+# Retrieving information from the work_details table
+
+  work_detail_array = WorkDetail.all
 
   elsif body.include? "companies" or body.include? "company"  
     message = "Sharon has worked at "
-    WorkDetail.all.each do |wd|
-      message += wd.company + ", "
+    WorkDetail.all.each_with_index do |index, record|
+      message += "<br/>#{index+1}. #{record.company} ," 
     end
  
-  elsif body.include? "Hidesign" or body.include? "leather"
-    work_detail_array = WorkDetail.all
+  elsif body.include? "Hidesign" or body.include? "leather" or body == "first internship" or body.include? "first"
     message = "Sharon worked at #{work_detail_array[0].company} as #{work_detail_array[0].job_title} from #{work_detail_array[0].started_on} to #{work_detail_array[0].completed_on} in #{work_detail_array[0].location}."
  
+  elsif body == "Design Tech" or body.include? "Germany" or body == "second internship" or body.include? "second"
+    message = "Sharon worked at #{work_detail_array[1].company} as #{work_detail_array[1].job_title} from #{work_detail_array[1].started_on} to #{work_detail_array[1].completed_on} in #{work_detail_array[1].location}."
+    
+  elsif body.include? "Honeywell" or body == "third internship" or body.include? "third"
+    message = "Sharon worked at #{work_detail_array[2].company} as #{work_detail_array[2].job_title} from #{work_detail_array[2].started_on} to #{work_detail_array[2].completed_on} in #{work_detail_array[2].location}."
+    
+  elsif body.include? "Trimble" or body == "full time" or body.include? "last"
+    message = "Sharon worked at #{work_detail_array[3].company} as #{work_detail_array[3].job_title} from #{work_detail_array[3].started_on} to #{work_detail_array[3].completed_on} in #{work_detail_array[3].location}."
 
 # -------------------------------------------------------------------------------------------
 
