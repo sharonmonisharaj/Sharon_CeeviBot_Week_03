@@ -169,11 +169,26 @@ get '/incoming_sms' do
     WorkDetail.all.each_with_index do |record,index|
       message += "\n\n#{index+1}. #{record.company}" 
     end
+    
+  elsif body.include? "description"
+    message = "Here are Sharon's job descriptions:"
+    WorkDetail.all.each_with_index do |record,index|
+      message += "\n\n#{index+1}. #{record.company}\n\n#{record.job_description}" 
+    end
+    
+  elsif body.include? "internship"
+    message = "Sharon has interned at the following three companies:"
+    
+    WorkDetail.all.each_with_index do |record,index|
+      while index<3
+      message += "\n\n#{index+1}. #{record.company}\n\n#{record.location}" 
+    end
+    end
  
-  elsif body.include? "Hidesign" or body.include? "leather" or body == "first internship" or body.include? "first"
+  elsif body.include? "Hidesign" or body.include? "first"
     message = "Sharon worked at #{work_detail_array[0].company} as #{work_detail_array[0].job_title} from #{work_detail_array[0].started_on} to #{work_detail_array[0].completed_on} in #{work_detail_array[0].location}."
  
-  elsif body.include? "Design Tech" or body.include? "Germany" or body == "second internship" or body.include? "second"
+  elsif body.include? "Design Tech" or body.include? "Germany" or body.include? "second"
     message = "Sharon worked at #{work_detail_array[1].company} as #{work_detail_array[1].job_title} from #{work_detail_array[1].started_on} to #{work_detail_array[1].completed_on} in #{work_detail_array[1].location}."
     
   elsif body.include? "Honeywell" or body == "third internship" or body.include? "third"
@@ -182,11 +197,6 @@ get '/incoming_sms' do
   elsif body.include? "Trimble" or body == "full time" or body.include? "last"
     message = "Sharon worked at #{work_detail_array[3].company} as #{work_detail_array[3].job_title} from #{work_detail_array[3].started_on} to #{work_detail_array[3].completed_on} in #{work_detail_array[3].location}."
 
-  elsif body.include? "description"
-    message = "Here are Sharon's job descriptions:"
-    WorkDetail.all.each_with_index do |record,index|
-      message += "\n\n#{index+1}. #{record.company}\n\n#{record.job_description}" 
-    end
 
 # -------------------------------------------------------------------------------------------
 
