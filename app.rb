@@ -166,22 +166,6 @@ get '/incoming_sms' do
 
 # Retrieving information from the work_details table
 
-  elsif body == "internship"
-    work_detail_array = WorkDetail.all
-    message = "Sharon has interned at the following three companies:\n\n1. #{work_detail_array[0].company}\n#{work_detail_array[0].location}\n\n2. #{work_detail_array[1].company}\n#{work_detail_array[1].location}\n\n 3. #{work_detail_array[2].company}\n#{work_detail_array[2].location}"
-
-# elsif body == "Hidesign"
-#   message = "Sharon worked at #{work_detail_array[0].company} as #{work_detail_array[0].job_title} from #{work_detail_array[0].started_on} to #{work_detail_array[0].completed_on} in #{work_detail_array[0].location}."
-
-elsif body.include? "Design Tech"
-  message = "Sharon worked at #{work_detail_array[1].company} as #{work_detail_array[1].job_title} from #{work_detail_array[1].started_on} to #{work_detail_array[1].completed_on} in #{work_detail_array[1].location}."
-  
-elsif body.include? "Honeywell"
-  message = "Sharon worked at #{work_detail_array[2].company} as #{work_detail_array[2].job_title} from #{work_detail_array[2].started_on} to #{work_detail_array[2].completed_on} in #{work_detail_array[2].location}."
-  
-elsif body.include? "Trimble"
-  message = "Sharon worked at #{work_detail_array[3].company} as #{work_detail_array[3].job_title} from #{work_detail_array[3].started_on} to #{work_detail_array[3].completed_on} in #{work_detail_array[3].location}."
-
   elsif body.include? "companies" or body.include? "company"  
     message = "Sharon has worked at: "
     WorkDetail.all.each_with_index do |record,index|
@@ -193,6 +177,47 @@ elsif body.include? "Trimble"
     WorkDetail.all.each_with_index do |record,index|
       message += "\n\n#{index+1}. #{record.company}\n\n#{record.job_description}" 
     end
+    
+  work_detail_array = WorkDetail.all
+    
+  elsif body.include? "internship"
+    message = "Sharon has interned at the following three companies:\n\n1. #{work_detail_array[0].company}\n#{work_detail_array[0].location}\n\n2. #{work_detail_array[1].company}\n#{work_detail_array[1].location}\n\n 3. #{work_detail_array[2].company}\n#{work_detail_array[2].location}"
+
+  elsif body.include? "Hidesign"
+    message = "Sharon worked at #{work_detail_array[0].company} as #{work_detail_array[0].job_title} from #{work_detail_array[0].started_on} to #{work_detail_array[0].completed_on} in #{work_detail_array[0].location}."
+
+  elsif body.include? "Design Tech" or body.include? "Germany" or body.include? "abroad"
+    message = "Sharon worked at #{work_detail_array[1].company} as #{work_detail_array[1].job_title} from #{work_detail_array[1].started_on} to #{work_detail_array[1].completed_on} in #{work_detail_array[1].location}."
+  
+  elsif body.include? "Honeywell"
+    message = "Sharon worked at #{work_detail_array[2].company} as #{work_detail_array[2].job_title} from #{work_detail_array[2].started_on} to #{work_detail_array[2].completed_on} in #{work_detail_array[2].location}."
+  
+  elsif body.include? "Trimble"
+    message = "Sharon worked at #{work_detail_array[3].company} as #{work_detail_array[3].job_title} from #{work_detail_array[3].started_on} to #{work_detail_array[3].completed_on} in #{work_detail_array[3].location}."
+    
+# -------------------------------------------------------------------------------------------
+
+# Retrieving information from the education_details table
+
+  elsif body.include? "education" or body.include? "studies"  
+    message = "Sharon has the following educational qualifications: "
+    EducationDetail.all.each_with_index do |record,index|
+      message += "\n\n#{index+1}. #{record.program}\n#{record.institute}\n#{record.location}\n#{record.score}\n" 
+    end
+    
+  education_detail_array = EducationDetail.all
+    
+  elsif body.include? "school"
+    message = "Sharon's class 10 and 12 board examination details:\n\n1. #{education_detail_array[0].program}\n#{education_detail_array[0].institute}\n#{education_detail_array[0].location}\n#{education_detail_array[0].completed_on}\n#{education_detail_array[0].score}\n\n2. #{education_detail_array[1].program}\n#{education_detail_array[1].institute}\n#{education_detail_array[1].location}\n#{education_detail_array[1].completed_on}\n#{education_detail_array[1].score}"
+
+  elsif body.include? "college"
+    message = "Sharon's college education:\n\n1. #{education_detail_array[2].program}\n#{education_detail_array[2].institute}\n#{education_detail_array[2].location}\n#{education_detail_array[2].completed_on}\n#{education_detail_array[2].score}\n\n2. #{education_detail_array[3].program}\n#{education_detail_array[3].institute}\n#{education_detail_array[3].location}\n#{education_detail_array[3].completed_on}\n#{education_detail_array[3].score}"
+   
+  elsif body.include? "undergrad" or body.include? "UG" or body.include? "bachelors"
+    message = "Sharon's Bachelor's degree details:\n\n #{education_detail_array[2].program}\n#{education_detail_array[2].institute}\n#{education_detail_array[2].location}\n#{education_detail_array[2].completed_on}\n#{education_detail_array[2].score}"
+
+  elsif body.include? "master's" or body.include? "masters" or body.include? "graduate"
+    message = "Sharon's Master's degree details:\n\n #{education_detail_array[3].program}\n#{education_detail_array[3].institute}\n#{education_detail_array[3].location}\n#{education_detail_array[3].completed_on}\n#{education_detail_array[3].score}"
   
 # -------------------------------------------------------------------------------------------
 
