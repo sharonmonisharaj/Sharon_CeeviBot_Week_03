@@ -155,12 +155,10 @@ get '/incoming_sms' do
     message = "I was created to enable anyone interested to know more about Sharon's Curriculum Vitae."
   
   elsif body.include? "companies" or body.include? "company"  
-    # WorkDetail.all.each do |wd_record|
- #      message = "Sharon has worked at: #{wd_record.company}"
- #    end
- message = "I’ve worked at: "
+
+ message = "Sharon has worked at: "
  WorkDetail.all.each do |wd|
-   message += wd.company + ","
+   message += wd.company + ", "
  end
 
     # workexperience[i].username
