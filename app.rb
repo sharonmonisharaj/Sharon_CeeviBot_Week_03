@@ -304,7 +304,7 @@ def get_greeting
 end
 
 def get_about_message
-  "\n\n" + get_greeting + "! I\'m Sharon's CeeviBot 🤖! " + get_commands
+  get_greeting + "! I\'m Sharon's CeeviBot 🤖! " + get_commands
 end
 
 def get_help_message
