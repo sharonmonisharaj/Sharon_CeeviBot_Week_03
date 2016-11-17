@@ -182,6 +182,12 @@ get '/incoming_sms' do
   elsif body.include? "Trimble" or body == "full time" or body.include? "last"
     message = "Sharon worked at #{work_detail_array[3].company} as #{work_detail_array[3].job_title} from #{work_detail_array[3].started_on} to #{work_detail_array[3].completed_on} in #{work_detail_array[3].location}."
 
+  elsif body.include? "description"
+    message = "Here are Sharon's job descriptions:"
+    WorkDetail.all.each_with_index do |record,index|
+      message += "\n\n#{index+1}. #{record.company}\n\n#{record.job_description}" 
+    end
+
 # -------------------------------------------------------------------------------------------
 
 # Connecting to Behance API using the gem httparty.
