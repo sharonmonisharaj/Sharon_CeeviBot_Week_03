@@ -158,9 +158,9 @@ get '/incoming_sms' do
     # WorkDetail.all.each do |wd_record|
  #      message = "Sharon has worked at: #{wd_record.company}"
  #    end
- message = “I’ve worked at: "
+ message = "I’ve worked at: "
  WorkDetail.all.each do |wd|
-   message += “ “ + wd.title
+   message += " " + wd.company
  end
 
     # workexperience[i].username
