@@ -9,6 +9,7 @@ require 'twilio-ruby'
 require 'rake'
 require 'giphy'
 require 'httparty'
+#require 'behance'
 
 # -------------------------------------------------------------------------------------------
 
@@ -39,6 +40,9 @@ require_relative './models/award'
 enable :sessions
 
 client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
+
+# initializing the client
+#client = Behance::Client.new(access_token: "dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
 
 
 # -------------------------------------------------------------------------------------------
@@ -226,7 +230,8 @@ get '/incoming_sms' do
 # I have had my online portfolio on Behance since 2013.
   
   elsif body.include? "basic" or body.include? "personal" or body.include? "bio"
-    message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
+    
+    get_personal_info_from_behance
     
   elsif body == "projects"
     message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/projects?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
@@ -312,6 +317,10 @@ error 401 do
   "Not allowed!!!"
 end
 
+get '/test' do
+  get_personal_info_from_behance
+end 
+
 
 # -------------------------------------------------------------------------------------------
 #   METHODS
@@ -319,6 +328,17 @@ end
 # -------------------------------------------------------------------------------------------
 
 private 
+
+
+def get_personal_info_from_behance 
+  
+  message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
+  json = message.body
+  
+  user = json["user"]
+  user["first_name"].to_s
+end
+
 
 GREETINGS = ["Hi","Yo", "Hey","Howdy", "Hello", "Ahoy", "‘Ello", "Aloha", "Hola", "Bonjour", "Hallo", "Ciao", "Konnichiwa"]
 
