@@ -162,8 +162,6 @@ get '/incoming_sms' do
 
 # Retrieving information from the work_details table
 
-  work_detail_array = WorkDetail.all
-
   elsif body.include? "companies" or body.include? "company"  
     message = "Sharon has worked at: "
     WorkDetail.all.each_with_index do |record,index|
@@ -176,6 +174,8 @@ get '/incoming_sms' do
       message += "\n\n#{index+1}. #{record.company}\n\n#{record.job_description}" 
     end
     
+  work_detail_array = WorkDetail.all
+  
   elsif body.include? "internship"
     message = "Sharon has interned at the following three companies:\n\n1. #{work_detail_array[0].company}\n#{work_detail_array[0].location}\n\n2. #{work_detail_array[1].company}\n#{work_detail_array[1].location}\n\n 3. #{work_detail_array[2].company}\n#{work_detail_array[2].location}"
  
