@@ -160,7 +160,7 @@ get '/incoming_sms' do
  #    end
  message = "I’ve worked at: "
  WorkDetail.all.each do |wd|
-   message += " " + wd.company
+   message += wd.company + ","
  end
 
     # workexperience[i].username
