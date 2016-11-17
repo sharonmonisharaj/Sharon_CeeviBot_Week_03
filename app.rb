@@ -148,7 +148,7 @@ get '/incoming_sms' do
   elsif body.include? "who"
     message = "Im a bot created by Sharon. I'm her favorite one!"
     
-  elsif body.include? "purpose" or body.include "goal"
+  elsif body.include? "purpose" or body.include? "goal"
     message = "It is my life's goal to tell anyone who would listen about Sharon's exciting Curriculum Vitae! Ask me anything you would like to know!"
   
   elsif body.include? "when" or body.include? "time"    
@@ -212,7 +212,7 @@ get '/incoming_sms' do
   education_detail_array = EducationDetail.all
     
   elsif body.include? "school"
-    message = "Sharon's class 10 and 12 board examination details:\n\n1. #{education_detail_array[0].program}\n#{education_detail_array[0].institute}\n#{education_detail_array[0].location}\n#{education_detail_array[0].completed_on}\n#{education_detail_array[0].score}\n\n2. #{education_detail_array[1].program}\n#{education_detail_array[1].institute}\n#{education_detail_array[1].location}\n#{education_detail_array[1].completed_on}\n#{education_detail_array[1].score}"
+    message = "Sharon's class 10 and 12 board examination details:\n\n1. #{education_detail_array[0].program}\n#{education_detail_array[0].institute}\n#{education_detail_array[0].location}\n#{education_detail_array[0].completed_on.strftime("%B %y")}\n#{education_detail_array[0].score}\n\n2. #{education_detail_array[1].program}\n#{education_detail_array[1].institute}\n#{education_detail_array[1].location}\n#{education_detail_array[1].completed_on}\n#{education_detail_array[1].score}"
 
   elsif body.include? "college"
     message = "Sharon's college education:\n\n1. #{education_detail_array[2].program}\n#{education_detail_array[2].institute}\n#{education_detail_array[2].location}\n#{education_detail_array[2].completed_on}\n#{education_detail_array[2].score}\n\n2. #{education_detail_array[3].program}\n#{education_detail_array[3].institute}\n#{education_detail_array[3].location}\n#{education_detail_array[3].completed_on}\n#{education_detail_array[3].score}"
@@ -317,9 +317,9 @@ error 401 do
   "Not allowed!!!"
 end
 
-get '/test' do
-  get_personal_info_from_behance
-end 
+# get '/test' do
+#   get_personal_info_from_behance
+# end
 
 
 # -------------------------------------------------------------------------------------------
@@ -329,15 +329,15 @@ end
 
 private 
 
-
-def get_personal_info_from_behance 
-  
-  message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
-  json = message.body
-  
-  user = json["user"]
-  user["first_name"].to_s
-end
+#
+# def get_personal_info_from_behance
+#
+#   message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
+#   json = message.body
+#
+#   user = json["user"]
+#   user["first_name"].to_s
+# end
 
 
 GREETINGS = ["Hi","Yo", "Hey","Howdy", "Hello", "Ahoy", "‘Ello", "Aloha", "Hola", "Bonjour", "Hallo", "Ciao", "Konnichiwa"]
