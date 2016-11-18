@@ -305,16 +305,16 @@ get '/incoming_sms' do
   elsif body.include? "project" or body.include? "task"
     message = "Here are Sharon's projects!\n\n"
     Project.all.each_with_index do |record,index|
-      message += "#{index+1}. \n\n#{record.title}\n"
+      message += "#{index+1}. #{record.title}\n"
       message += "Portfolio Link: #{record.url}\n\n" 
     end
-    
-  # elsif body.include? "random"
-  #   message = "Here's an interesting projects that Sharon has worked on!\n\n"
-  #   Project.all.each do |i|
-  #     message += "\n\n#{i.title}\n\n#{i.description}\n\n"
-  #     message += "Portfolio Link: #{i.url}\n\n"
-  #   end
+
+  elsif body.include? "random"
+    message = "Here's an interesting project that Sharon has worked on!\n\n"
+    random = Project.all.sample(1)
+      message += "\n\n#{random.title}\n\n#{random.description}\n\n"
+      message += "Portfolio Link: #{random.url}\n\n"
+    end
       
 # -------------------------------------------------------------------------------------------
 
