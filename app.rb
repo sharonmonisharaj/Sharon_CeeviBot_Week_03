@@ -310,9 +310,9 @@ get '/incoming_sms' do
     end
 
   elsif body.include? "random"
-    message = "Here's an interesting project that Sharon has worked on!\n\n"
+    message = "Here's an interesting project that Sharon has worked on!"
     random = Project.all.sample(1).first
-      message += "\n\n#{random.title}\n\n#{random.description}\n\n"
+      message += "\n\n#{random.title.update}\n\n#{random.description}\n\n"
       message += "Portfolio Link: #{random.url}\n\n"
 
       
