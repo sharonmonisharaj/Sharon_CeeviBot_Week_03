@@ -314,7 +314,6 @@ get '/incoming_sms' do
     random = Project.all.sample(1)
       message += "\n\n#{random.title}\n\n#{random.description}\n\n"
       message += "Portfolio Link: #{random.url}\n\n"
-    end
       
 # -------------------------------------------------------------------------------------------
 
