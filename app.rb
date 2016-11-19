@@ -251,6 +251,10 @@ get '/incoming_sms' do
   elsif body.include? "awesome" or body.include? "great" or body.include? "cool" or body.include? "sweet" or body.include? "amazing" or body.include? "wonderful" or body.include? "spectacular"
     THANK = ["😀 I know I'm awesome. But hey! So are you!"]#, "😊 That's nice of you to say!", "😌 You're too kind."]
     message = "Thank you! " + THANK.sample
+    
+  # If the user laughs
+  elsif body.include? "lol" or body.include? "funny" or body.include? "😀" or body.include? "😊" or body.include? "🙃" or body.include? "😜" or body.include? "😄"
+    message = "🤖"
  
   # Saying goodbye
   elsif body.include? "bye" or body.include? "aurevoir" or body.include? "ciao" or body.include? "farewell" or body.include? "seeyou"
