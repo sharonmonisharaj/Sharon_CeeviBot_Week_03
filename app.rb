@@ -225,8 +225,8 @@ get '/incoming_sms' do
     
   # To display what Sharon dislikes
   elsif body.include? "dislike" or body.include? "hate"
-    message = "Sharon is not a fan of procrastination. She cannot stand injustice and always stands up for the affected party when
-    she encounters it. Oh and this is an important one - She hates skipping meals!"
+    message = "Sharon is not a fan of procrastination. She cannot stand injustice and always stands up for the affected party when "
+    message += "she encounters it. Oh and this is an important one - She hates skipping meals!"
     
   # To display information about Sharon's eligibility to work in the USA
   elsif body.include? "work" and body.include? "permit" or body.include? "eligible" or body.include? "citizen" or body.include? "visa"
