@@ -275,7 +275,7 @@ get '/incoming_sms' do
     elsif body.include? "interest" or body.include? "enjoy" or body.include? "hobbies" or body.include? "hobby" 
       message = "Here are Sharon's interests!"
       Interest.all.each_with_index do |record,index|
-        message += "\n\n#{record.title.upcase}\n#{record.description}\n" 
+        message += "\n\n#{record.title.upcase}\n#{record.description}" 
       end
       
 # -------------------------------------------------------------------------------------------
@@ -285,7 +285,7 @@ get '/incoming_sms' do
   elsif body.include? "skill" or body.include? "expert" 
     message = "Here are Sharon's skills!"
     Skill.all.each_with_index do |record,index|
-      message += "\n\n#{record.title.upcase}\n#{record.description}\n" 
+      message += "\n\n#{record.title.upcase}\n#{record.description}" 
     end
     
 # -------------------------------------------------------------------------------------------
@@ -295,7 +295,7 @@ get '/incoming_sms' do
   elsif body.include? "award" or body.include? "honor" or body.include? "accomplish"
     message = "Here are Sharon's awards!"
     Award.all.each_with_index do |record,index|
-      message += "#{index+1}. \n\n#{record.title}\n#{record.description}\nAWARDED ON: #{record.awarded_on.strftime("%B %Y")}" 
+      message += "\n\n#{index+1}. #{record.title}\n#{record.description}\nAWARDED ON: #{record.awarded_on.strftime("%B %Y")}" 
     end
     
 # -------------------------------------------------------------------------------------------
