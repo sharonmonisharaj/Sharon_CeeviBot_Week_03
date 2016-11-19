@@ -320,7 +320,7 @@ get '/incoming_sms' do
     message += BasicDetail.all[8].description + " years of age."
   
   # To display Sharon's work experience  
-  elsif body.include? "workexperience" or body.include? "year"
+  elsif body.include? "work experience" or body.include? "year"
     message = "Before coming to Carnegie Mellon University to pursue Master's in Human-Computer Interaction, "
     message += "Sharon worked as an Interaction Designer for "
     message += BasicDetail.all[9].description
