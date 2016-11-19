@@ -346,7 +346,7 @@ get '/incoming_sms' do
     end
 
   # To display Sharon's internship deatils
-  elsif body.include? "internship" or body.include? "apprentice"
+  elsif body.include? "intern" or body.include? "apprentice"
     work_details = WorkDetail.all.where( internship: true )
     message = "Sharon has interned at the following #{ work_details.count } companies:\n\n"
     work_details.each_with_index do |detail,index|
