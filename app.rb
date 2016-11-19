@@ -271,7 +271,7 @@ get '/incoming_sms' do
     message = FAREWELL.sample
   
   # If the user needs help  
-  elsif body.include? "help"
+  elsif body.include? "help" or body.include? "hmm"
     message = get_help_message
     
     
