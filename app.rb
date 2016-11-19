@@ -356,39 +356,46 @@ get '/incoming_sms' do
   # To display information about Sharon's job at Hidesign
   elsif body.include? "hidesign"
     # work_details = WorkDetail.all.where( "company LIKE ?", "%hidesign%" )
+    # work_details.each_with_index do |record,index|
     work_details = WorkDetail.all
-    #work_details.each_with_index do |record,index|
     record = work_details[0]
-      message = "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}.\n\n"
-      message += "JOB DESCRIPTION:\n #{record.job_description}"
-      #end
+    message = "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}"
+    message += " from #{record.started_on.strftime("%B %Y")} to #{record.completed_on.strftime("%B %Y")}.\n\n"
+    message += "JOB DESCRIPTION:\n #{record.job_description}"
+    # end
   
   # To display information about Sharon's foreign work experience  
   elsif body == "designtech" or body.include? "german" or body.include? "abroad" or body.include? "foreign"
-    message = ""
-    work_details = WorkDetail.all.where( "company LIKE ?", "%design tech%" )
-    work_details.each_with_index do |record,index|
-      message += "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}.\n\n"
-      message += "JOB DESCRIPTION:\n #{record.job_description}"
-    end
+    # work_details = WorkDetail.all.where( "company LIKE ?", "%design tech%" )
+    # work_details.each_with_index do |record,index|
+    work_details = WorkDetail.all
+    record = work_details[1]
+    message = "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}"
+    message += " from #{record.started_on.strftime("%B %Y")} to #{record.completed_on.strftime("%B %Y")}.\n\n"
+    message += "JOB DESCRIPTION:\n #{record.job_description}"
+    # end
  
   # To display information about Sharon's job at Honeywell  
   elsif body.include? "honeywell"    
-    message = ""
-    work_details = WorkDetail.all.where( "company LIKE ?", "%honeywell%" )
-    work_details.each_with_index do |record,index|
-      message += "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}.\n\n"
-      message += "JOB DESCRIPTION:\n #{record.job_description}"
-    end
+    # work_details = WorkDetail.all.where( "company LIKE ?", "%honeywell%" )
+    # work_details.each_with_index do |record,index|
+    work_details = WorkDetail.all
+    record = work_details[2]
+    message = "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}"
+    message += " from #{record.started_on.strftime("%B %Y")} to #{record.completed_on.strftime("%B %Y")}.\n\n"
+    message += "JOB DESCRIPTION:\n #{record.job_description}"
+    # end
   
   # To display information about Sharon's job at Trimble  
   elsif body.include? "trimble"    
-    message = ""
-    work_details = WorkDetail.all.where( "company LIKE ?", "%trimble%" )
-    work_details.each_with_index do |record,index|
-      message += "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}.\n\n"
-      message += "JOB DESCRIPTION:\n #{record.job_description}"
-    end
+    # work_details = WorkDetail.all.where( "company LIKE ?", "%trimble%" )
+    # work_details.each_with_index do |record,index|
+    work_details = WorkDetail.all
+    record = work_details[3]
+    message = "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}"
+    message += " from #{record.started_on.strftime("%B %Y")} to #{record.completed_on.strftime("%B %Y")}.\n\n"
+    message += "JOB DESCRIPTION:\n #{record.job_description}"
+    # end
     
 # -------------------------------------------------------------------------------------------
 
@@ -396,14 +403,15 @@ get '/incoming_sms' do
 
   # To display information about Sharon's current graduate program
   elsif body.include? "study" or body.include? "studies" or body.include? "graduat" or body.include? "convocat" or body.include? "doing" or body.include? "studying" 
-    message = ""
-    education_detail_array = EducationDetail.all.where( "institute LIKE ?", "%carnegie mellon university%" )
-    education_detail_array.each do |record|
-    message += "Sharon is currently pursuing "
+    # education_detail_array = EducationDetail.all.where( "institute LIKE ?", "%carnegie mellon university%" )
+    # education_detail_array.each do |record|
+    education_details = EducationDetail.all
+    record = education_details[3]
+    message = "Sharon is currently pursuing "
     message += "#{record.program} at #{record.institute}\n#{record.location}.\n"
     message += "She graduates in #{record.completed_on.strftime("%B %Y")}.\n"
     message += "Her current score: #{record.score}.\n"
-  end
+    #end
   
   # To display information about Sharon's educational qualifications
   elsif body.include? "education"  
