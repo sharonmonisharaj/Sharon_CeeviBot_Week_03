@@ -92,7 +92,7 @@ get '/incoming_sms' do
   
 # If the user wants to play a guessing game!
     
-  elsif body == "play"
+  elsif body.include? "play"
     session["last_context"] = "play"
     session["guess_it"] = rand(1...5)
     message = "Let's play! Guess what number I'm thinking of. It's between 1 and 5"
