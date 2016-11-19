@@ -350,7 +350,7 @@ get '/incoming_sms' do
     work_details = WorkDetail.all.where( internship: true )
     message = "Sharon has interned at the following #{ work_details.count } companies:\n\n"
     work_details.each_with_index do |detail,index|
-      message += "#{index+1}. #{detail.company} \n #{detail.location}\n\n"
+      message += "#{index+1}. #{detail.company}\n- #{detail.location}\n\n"
     end
 
   # To display information about Sharon's job at Hidesign
