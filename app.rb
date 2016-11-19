@@ -328,18 +328,22 @@ get '/incoming_sms' do
     
   elsif body.include? "stat" or body.include? "view" or body.include? "appreciation"
     json = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/projects?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
-    message = ""
-    stats = json["projects"]
-    	stats.each_with_index do |project, index|
-        name = project["name"]
-        url = project["url"]
-    		views = project["stats"]["views"]
-    		appreciations = project["stats"]["appreciations"]	
-    		message += "#{index+1}. #{name}\n"
+    random = json["projects"].sample(1).first
+    
+    message = "Here are the statistics for one of Sharon's best projects!"
+    name = random["name"]
+    url = random["url"]
+    stats = random["stats"]
+    
+    	#stats.each do |stat|       
+    		views = stats["views"]
+    		appreciations = stats["appreciations"]	
+        
+    		message += "#{name}\n"
         message += "Number of views: #{views}\n"
-        message += "Number of appreciations: #{appreciations}"
+        message += "Number of appreciations: #{appreciations}\n"
     		message += "Online Portfolio Link : #{url}\n\n"
-      end
+ 
     
   elsif body == "project"
     message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/projects?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR").sample
