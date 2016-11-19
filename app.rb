@@ -119,11 +119,11 @@ get '/incoming_sms' do
     message = INTRODUCTION.sample
   
   # To display CeeviBot's creator's name  
-  elsif body.include? "creator" or body.include? "create" or body.include? "maker" or body.include? "madeyou"
+  elsif body.include? "creator" or body.include? "maker" or body.include? "made you"
     message = "I am a bot created by Sharon. I'm her favorite one!"
   
   # To display what Ceevibot does  
-  elsif body.include? "purpose" or body.include? "goal" or body.include? "youdo" or body.include? "yourjob"
+  elsif body.include? "purpose" or body.include? "goal" or body.include? "you do" or body.include? "your job"
     message = "It is my life's goal to tell wonderful people like you about Sharon's exciting Curriculum Vitae!" 
     message += "Ask me anything you would like to know!"
   
@@ -142,7 +142,7 @@ get '/incoming_sms' do
     
   # To display the current time
   elsif body.include? "time"  
-    message = Time.now.strftime( "It's %A %B %e, %Y")
+    message = Time.now.strftime( "It's %I:%M, %A, %B %e, %Y")
     
   # To display Sharon's contact details
   elsif body.include? "contact" 
