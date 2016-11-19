@@ -611,10 +611,10 @@ GREETINGS = ["Hi","Yo", "Hey","Howdy", "Hello", "Ahoy",
 COMMANDS = "Sharon's likes, dislikes, beliefs, work experience, internships, education, skills, awards, age, marital status, parents and the what, where, when and why of my existence. 
 We can also play a game if you said 'play'!"
 
-HELP = ["You're stuck, eh? ", "I know I can be difficult at times. ", 
-  "I'm sorry that I'm giving you a hard time. ", 
-  "Don't worry, it's my fault, not yours if you're having trouble talking to me. ", 
-  "Tired of dealing with me? I'll try my best to be on my best behavior! "]
+HELP = ["You're stuck, eh? ", "I know I can be difficult at times.\n\n", 
+  "I'm sorry that I'm giving you a hard time.\n\n", 
+  "Don't worry, it's my fault, not yours if you're having trouble talking to me.\n\n", 
+  "Tired of dealing with me? I'll try my best to be on my best behavior!\n\n"]
   
 CONTACT = {"cell" => "+1-412-726-8237",
     "address" => "Call her to find out!",
