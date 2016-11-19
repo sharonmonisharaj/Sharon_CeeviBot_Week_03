@@ -253,7 +253,7 @@ get '/incoming_sms' do
     message = WELCOME.sample
  
   # If compliments are given
-  elsif body.include? "awesome" or body.include? "great" or body.include? "nice" or body.include? "sweet" or body.include? "amazing" or body.include? "wonderful" or body.include? "spectacular"
+  elsif body.include? "awesome" or body.include? "great" or body.include? "brilliant" or body.include? "nice" or body.include? "sweet" or body.include? "amazing" or body.include? "wonderful" or body.include? "spectacular"
     THANK = ["😀 I know I'm awesome. But hey! So are you!"]#, "😊 That's nice of you to say!", "😌 You're too kind."]
     message = "Thank you! " + THANK.sample
     
