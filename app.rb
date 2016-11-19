@@ -230,8 +230,8 @@ get '/incoming_sms' do
     
   # To display information about Sharon's eligibility to work in the USA
   elsif body.include? "work" and body.include? "permit" or body.include? "eligible" or body.include? "citizen" or body.include? "visa"
-    message = "Sharon is a citizen of India. She is in the US as a student with an F1 visa. She is eligible to work under this 
-    visa status for three years after completing her graduate program using Optional Practical Training (OPT)."
+    message = "Sharon is a citizen of India. She is in the US as a student with an F1 visa. She is eligible to work under this" 
+    message+= " visa status for three years after completing her graduate program using Optional Practical Training (OPT)."
     
   # To display information about the countries Sharon has visited
   elsif body.include? "countries" or body.include? "country" or body.include? "visit" or body.include? "travel"
