@@ -246,6 +246,11 @@ get '/incoming_sms' do
   elsif body.include? "dumb" or body.include? "stupid" or body.include? "idiot" or body.include? "fuc" or body.include? "fool" or body.include? "gger" or body.include? "egro" or body.include? "astard" or body.include? "oundrel" or body.include? "ascal"
     POLITE = ["Please be polite.", "I'm sorry, that's not the kind of language I am comfortable with.", "I have feelings too you know.", "Uh oh, Sharon wouldn't be happy if she heard that.", "I'm going to pretend I didn't hear that.", "I'm sure I misheard you. There's no way you could have said that to me!"]
     message = POLITE.sample
+    
+  # If the user thanks CeeviBot
+  elsif body.include "thank"
+    WELCOME = ["You're welcome!", "Sure!", "Any time!", "It's my pleasure!", "The pleasure is all mine!"]
+    message = WELCOME.sample
  
   # If compliments are given
   elsif body.include? "awesome" or body.include? "great" or body.include? "cool" or body.include? "sweet" or body.include? "amazing" or body.include? "wonderful" or body.include? "spectacular"
@@ -253,7 +258,7 @@ get '/incoming_sms' do
     message = "Thank you! " + THANK.sample
     
   # If the user laughs
-  elsif body.include? "lol" or body.include? "funny" or body.include? "😀" or body.include? "😊" or body.include? "🙃" or body.include? "😜" or body.include? "😄"
+  elsif body.include? "lol" or body.include? "funny" or body.include? "😂" or body.include? "😀" or body.include? "😊" or body.include? "🙃" or body.include? "😜" or body.include? "😄"
     message = "🤖"
  
   # Saying goodbye
