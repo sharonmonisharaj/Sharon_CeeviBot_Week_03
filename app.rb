@@ -132,7 +132,7 @@ get '/incoming_sms' do
     message = "I was created on November 6, 2016."
   
   # To display where Ceevibot was created
-  elsif body.include? "where"    
+  elsif body.include? "where were you"    
     message = "I was created in Pittsburgh when Sharon was pursuing her Master's degree in Human-Computer Interaction "
     message += "at Carnegie Mellon University."
   
