@@ -114,7 +114,7 @@ get '/incoming_sms' do
 # Hard-coded SMS responses
   
   # To display CeeviBot's name  
-  elsif body.include? "yourname" or body.include? "areyou"
+  elsif body.include? "are you"
     INTRODUCTION = [ "My name is CeeviBot.", "CeeviBot at your service!", "I'm CeeviBot!" ]
     message = INTRODUCTION.sample
   
@@ -147,12 +147,12 @@ get '/incoming_sms' do
   # To display Sharon's contact details
   elsif body.include? "contact" 
     message = "Here are Sharon's contact details: \n\n"
-    message += "Phone number: #{CONTACT["cell"]}\n"
-    message += "Address: #{CONTACT["address"]}\n"
-    message += "Personal Email ID: #{CONTACT["personal_email"]}\n"
-    message += "CMU Email ID: #{CONTACT["cmu_email"]}\n"
-    message += "Facebook page: #{CONTACT["facebook"]}\n"
-    message += "LinkedIn page: #{CONTACT["linkedin"]}\n"
+    message += "Phone number: #{CONTACT["cell"]}\n\n"
+    message += "Address: #{CONTACT["address"]}\n\n"
+    message += "Personal Email ID: #{CONTACT["personal_email"]}\n\n"
+    message += "CMU Email ID: #{CONTACT["cmu_email"]}\n\n"
+    message += "Facebook page: #{CONTACT["facebook"]}\n\n"
+    message += "LinkedIn page: #{CONTACT["linkedin"]}\n\n"
     message += "Online portfolio: #{CONTACT["portfolio"]}"
     
   # To display Sharon's email IDs
@@ -271,7 +271,7 @@ get '/incoming_sms' do
 # Retrieving information from the basic_details table
 
   # To display Sharon's full name
-  elsif body.include? "fullname" or body.include? "surname"
+  elsif body.include? "full name" or body.include? "surname"
     message = "My creator's full name is "
     message += BasicDetail.all[0].description + "."
   
