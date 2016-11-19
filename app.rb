@@ -272,8 +272,8 @@ get '/incoming_sms' do
 
 # Retrieving information from the interests table
 
-    elsif body.include? "interest" or body.include? "enjoy" or body.include? "like"  
-      message = "Here are Sharon's interests!\n\n"
+    elsif body.include? "interest" or body.include? "enjoy" or body.include? "hobbies" or body.include? "hobby" 
+      message = "Here are Sharon's interests!"
       Interest.all.each_with_index do |record,index|
         message += "\n\n#{record.title.upcase}\n#{record.description}\n" 
       end
@@ -283,7 +283,7 @@ get '/incoming_sms' do
 # Retrieving information from the skills table
 
   elsif body.include? "skill" or body.include? "expert" 
-    message = "Here are Sharon's skills!\n\n"
+    message = "Here are Sharon's skills!"
     Skill.all.each_with_index do |record,index|
       message += "\n\n#{record.title.upcase}\n#{record.description}\n" 
     end
@@ -293,7 +293,7 @@ get '/incoming_sms' do
 # Retrieving information from the awards table
 
   elsif body.include? "award" or body.include? "honor" or body.include? "accomplish"
-    message = "Here are Sharon's awards!\n\n"
+    message = "Here are Sharon's awards!"
     Award.all.each_with_index do |record,index|
       message += "#{index+1}. \n\n#{record.title}\n#{record.description}\nAWARDED ON: #{record.awarded_on.strftime("%B %Y")}" 
     end
@@ -330,7 +330,7 @@ get '/incoming_sms' do
     json = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/projects?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
     random = json["projects"].sample(1).first
     
-    message = "Here are the statistics for one of Sharon's best projects!"
+    message = "Here are statistics for one of Sharon's projects!"
     name = random["name"]
     url = random["url"]
     stats = random["stats"]
@@ -340,8 +340,8 @@ get '/incoming_sms' do
     		appreciations = stats["appreciations"]	
         
     		message += "#{name}\n"
-        message += "Number of views: #{views}\n"
-        message += "Number of appreciations: #{appreciations}\n"
+        message += "Number of views: #{views}\n\n"
+        message += "Number of appreciations: #{appreciations}\n\n"
     		message += "Online Portfolio Link : #{url}\n\n"
  
     
