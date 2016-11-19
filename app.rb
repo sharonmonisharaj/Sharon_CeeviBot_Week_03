@@ -585,7 +585,7 @@ end
 private 
 
 GREETINGS = ["Hi","Yo", "Hey","Howdy", "Hello", "Ahoy", 
-  "‘Ello", "Aloha", "Hola", "Bonjour", "Hallo", "Ciao", "Konnichiwa"]
+  "‘Ello", "Aloha", "Hola", "Bonjour", "Ciao", "Konnichiwa"]
 
 COMMANDS = "Sharon's likes, dislikes, beliefs, work experience, internships, education, skills, awards, age, marital status, parents and the what, where, when and why of my existence. 
 We can also play a game if you said 'play'!"
