@@ -394,7 +394,7 @@ get '/incoming_sms' do
 # Retrieving information from the education_details table
 
   # To display information about Sharon's current graduate program
-  elsif body.include? "study" or body.include? "studies" or body.include? "graduat" or body.include? "convocat" 
+  elsif body.include? "study" or body.include? "studies" or body.include? "graduat" or body.include? "convocat" or body.include? "doing" or body.include? "studying" 
     message = ""
     education_detail_array = EducationDetail.all.where( "institute LIKE ?", "%carnegie mellon university%" )
     education_detail_array.each do |record|
