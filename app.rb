@@ -168,6 +168,47 @@ get '/incoming_sms' do
 # Retrieving information from the linked database to be used as SMS responses.
 # -------------------------------------------------------------------------------------------
 
+
+# Retrieving information from the basic_details table
+
+  elsif body.include? "fullname" 
+    message = "My creator's full name is "
+    message += BasicDetail.all[0].description + "."
+    
+  elsif body.include? "birth" or body.include? "born"
+    message = "Sharon was born on "
+    message += BasicDetail.all[1].description
+    message += " in " + BasicDetail.all[7].description + "."
+    
+  elsif body.include? "married" or body.include? "marital"
+    message = "Sharon is "
+    message += BasicDetail.all[2].description + "."
+    
+  elsif body.include? "husband" or body.include? "spouse" or body.include? "partner" or body.include? "jacob"
+    message = "Sharon is married to a wonderful man named "
+    message += BasicDetail.all[3].description + ". "
+    message += "He is a #{BasicDetail.all[4].description}."
+    
+  elsif body.include? "father" or body.include? "dad" 
+    message = "Sharon's father's name is "
+    message += BasicDetail.all[5].description + "."
+    
+  elsif body.include? "mother" or body.include? "mom" 
+    message = "Sharon's mother's name is "
+    message += BasicDetail.all[6].description + "."
+    
+  elsif body.include? "old" or body.include? "age" 
+    message = "Sharon is "
+    message += BasicDetail.all[8].description + " years of age."
+    
+  elsif body.include? "workexperience" or body.include? "year"
+    message = "Before coming to Carnegie Mellon University to pursue Master's in Human-Computer Interaction, "
+    message += "Sharon worked as an Interaction Designer for "
+    message += BasicDetail.all[9].description
+    message += " in Trimble Navigation, Chennai."
+
+# -------------------------------------------------------------------------------------------
+
 # Retrieving information from the work_details table
 
   elsif body.include? "companies" or body.include? "company"  
@@ -177,7 +218,7 @@ get '/incoming_sms' do
     end
     
   elsif body.include? "description"
-    message = "Here are Sharon's job descriptions:"
+    message = "Here are the roles that Sharon has played as a design professional:"
     WorkDetail.all.each_with_index do |record,index|
       message += "\n\n#{index+1}. #{record.company}\n\n#{record.job_description}" 
     end
@@ -220,6 +261,7 @@ get '/incoming_sms' do
       message += "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}.\n\n"
       message += "JOB DESCRIPTION:\n #{record.job_description}"
     end
+    
 # -------------------------------------------------------------------------------------------
 
 # Retrieving information from the education_details table
@@ -322,47 +364,47 @@ get '/incoming_sms' do
 # https://www.behance.net is an online portfolio website.
 # I have had my online portfolio on Behance since 2013.
   
-  elsif body.include? "basic" or body.include? "personal" or body.include? "bio"
+  elsif body.include? "passion" or body.include? "philosophy" or body.include? "belief" or body.include? "summary" or body.include? "about"
+    json = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
+    message = "Here's what Sharon is about!\n\n"
+    about = json["user"]
+    philosophy = about["sections"] 
+    message += "'" + philosophy["About"] + "'"
+    message += "\n- Sharon"
     
-    get_personal_info_from_behance
     
-  elsif body.include? "stat" or body.include? "view" or body.include? "appreciation"
+  elsif body.include? "stat" or body.include? "metric" or body.include? "analytic"
+    json = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/stats?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
+    message = "Here are the statistics related to Sharon's online portfolio:\n\n"
+    stats = json["stats"]["all_time"]
+    message += "Project Views: #{stats["project_views"]}\n"
+    message += "Project Appreciations: #{stats["project_appreciations"]}\n"
+    message += "Project Comments: #{stats["project_comments"]}\n"
+    message += "Profile Views: #{stats["profile_views"]}\n"
+    
+    
+  elsif body.include? "view" or body.include? "appreciation"
     json = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/projects?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
     random = json["projects"].sample(1).first
-    
     message = "Here are statistics for one of Sharon's projects!"
     name = random["name"]
     url = random["url"]
     stats = random["stats"]
-    
-    	#stats.each do |stat|       
-    		views = stats["views"]
-    		appreciations = stats["appreciations"]	
-        
-    		message += "#{name}\n"
-        message += "Number of views: #{views}\n\n"
-        message += "Number of appreciations: #{appreciations}\n\n"
-    		message += "Online Portfolio Link : #{url}\n\n"
+    views = stats["views"]
+    appreciations = stats["appreciations"]	
+    message += "#{name}\n"
+    message += "Number of views: #{views}\n\n"
+    message += "Number of appreciations: #{appreciations}\n\n"
+    message += "Online Portfolio Link : #{url}\n\n"
  
-    
-  elsif body == "project"
-    message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/projects?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR").sample
-    
-  elsif body.include? "appreciation"
-    message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/appreciations?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
+ 
+  elsif body.include? "resume" or body.include? "cv"
+    json = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/projects?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
+    projects = json["projects"]
+    resume = projects[1]
+    url = resume["url"]
+    message = "Here's the link to Sharon's resume: #{url}"
   
-  elsif body.include? "experience"
-    message = HTTParty.get("https://www.behance.net/v2/users/sharonmonisharaj/work_experience?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
-  
-  elsif body.include? "following"
-    message = HTTParty.get("http://www.behance.net/v2/users/sharonmonisharaj/following?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
-    
-  elsif body.include? "followers"
-    message = HTTParty.get("http://www.behance.net/v2/users/sharonmonisharaj/followers?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
-    
-  elsif body.include? "statistics" or body.include? "stats"
-    message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj/stats?client_id=dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
-    
 # -------------------------------------------------------------------------------------------
     
   else 
@@ -380,42 +422,42 @@ end
 # -------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------
 
-
-get '/incoming_sms_giphy' do
-
-  session["last_context"] ||= nil
-  
-  sender = params[:From] || ""
-  body = params[:Body] || ""
-  query = body.downcase.strip
-  
-  Giphy::Configuration.configure do |config|
-    config.api_key = ENV["GIPHY_API_KEY"]
-  end
-  
-  results = Giphy.search( query, {limit: 3})
-  gif = nil
-  unless results.empty? 
-    
-    gif = results.first.original_image.url
-    text = "Powered by Giphy.com and Twilio MMS: twilio.com/mms"
-    
-  else 
- 
-    message = "Hmmm, that's odd. I couldn't find anything for '#{query}'. Try something else?"
-  end 
-  
-  twiml = Twilio::TwiML::Response.new do |r|
-    r.Message do |m|
-        m.Body message
-        unless gif.nil?
-            m.Media gif
-        end
-    end
-  end
-  twiml.text
-
-end
+#
+# get '/incoming_sms_giphy' do
+#
+#   session["last_context"] ||= nil
+#
+#   sender = params[:From] || ""
+#   body = params[:Body] || ""
+#   query = body.downcase.strip
+#
+#   Giphy::Configuration.configure do |config|
+#     config.api_key = ENV["GIPHY_API_KEY"]
+#   end
+#
+#   results = Giphy.search( query, {limit: 3})
+#   gif = nil
+#   unless results.empty?
+#
+#     gif = results.first.original_image.url
+#     text = "Powered by Giphy.com and Twilio MMS: twilio.com/mms"
+#
+#   else
+#
+#     message = "Hmmm, that's odd. I couldn't find anything for '#{query}'. Try something else?"
+#   end
+#
+#   twiml = Twilio::TwiML::Response.new do |r|
+#     r.Message do |m|
+#         m.Body message
+#         unless gif.nil?
+#             m.Media gif
+#         end
+#     end
+#   end
+#   twiml.text
+#
+# end
 
 # -------------------------------------------------------------------------------------------
 #     ERRORS
