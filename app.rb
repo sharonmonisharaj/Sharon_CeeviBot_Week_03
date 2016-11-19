@@ -598,7 +598,7 @@ HELP = ["You're stuck, eh? ", "I know I can be difficult at times. ",
 CONTACT = {"cell" => "+1-412-726-8237",
     "address" => "Call her to find out!",
     "personal_email" => "sharonmonisharaj@gmail.com",
-    "cmu_email" => "srajkuma @andrew.cmu.edu",
+    "cmu_email" => "srajkuma@andrew.cmu.edu",
     "facebook" => "https://www.facebook.com/sharon.m.rajkumar",
     "linkedin" => "https://www.linkedin.com/in/sharonmonisharaj",
     "portfolio" => "https://www.behance.net/sharonmonisharaj"}
