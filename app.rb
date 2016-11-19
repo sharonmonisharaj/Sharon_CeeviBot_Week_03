@@ -204,10 +204,10 @@ get '/incoming_sms' do
     message += "what users really want and what makers think they want or want them to want."
     
   # To display Sharon's favorite food
-  elsif body.include? "food" or body.include? "meal"
+  elsif body.include? "food" or body.include? "meal" or body.include? "eat"
     message = "Not many people know this, but Sharon is a big foodie! Breakfast is her absolute favorite meal of the day!"
-    message += "She loves spicy Indian and Chinese food and fresh American salads."
-    message += "Most importantly, she does love the occassional sweet treat!"
+    message += " She loves spicy Indian and Chinese food and fresh American salads."
+    message += " Most importantly, she does love the occassional sweet treat!"
     
   # To display Sharon's favorite holiday
   elsif body.include? "holiday" or body.include? "festival"
