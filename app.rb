@@ -148,7 +148,6 @@ get '/incoming_sms' do
   elsif body.include? "contact" 
     message = "Here are Sharon's contact details: \n\n"
     message += "Phone number: #{CONTACT["cell"]}\n\n"
-    message += "Address: #{CONTACT["address"]}\n\n"
     message += "Personal Email ID: #{CONTACT["personal_email"]}\n\n"
     message += "CMU Email ID: #{CONTACT["cmu_email"]}\n\n"
     message += "Facebook page: #{CONTACT["facebook"]}\n\n"
