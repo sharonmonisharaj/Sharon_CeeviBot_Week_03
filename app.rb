@@ -248,7 +248,7 @@ get '/incoming_sms' do
     message = POLITE.sample
     
   # If the user thanks CeeviBot
-  elsif body.include "thank"
+  elsif body.include? "thank"
     WELCOME = ["You're welcome!", "Sure!", "Any time!", "It's my pleasure!", "The pleasure is all mine!"]
     message = WELCOME.sample
  
