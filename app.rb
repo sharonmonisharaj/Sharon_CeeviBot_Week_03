@@ -356,11 +356,13 @@ get '/incoming_sms' do
   # To display information about Sharon's job at Hidesign
   elsif body.include? "hidesign"
     message = ""
-    work_details = WorkDetail.all.where( "company LIKE ?", "%hidesign%" )
-    work_details.each_with_index do |record,index|
+    # work_details = WorkDetail.all.where( "company LIKE ?", "%hidesign%" )
+    work_details = WorkDetail.all
+    #work_details.each_with_index do |record,index|
+    record = work_details[0]
       message += "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}.\n\n"
       message += "JOB DESCRIPTION:\n #{record.job_description}"
-    end
+      #end
   
   # To display information about Sharon's foreign work experience  
   elsif body == "designtech" or body.include? "german" or body.include? "abroad" or body.include? "foreign"
@@ -517,7 +519,7 @@ get '/incoming_sms' do
 # https://www.behance.net is an online portfolio website.
 # I have had my online portfolio on Behance since 2013.
   
-  # To display Sharon's work phisolophy
+  # To display Sharon's work philosophy
   elsif body.include? "passion" or body.include? "philosophy" or body.include? "belief" or body.include? "summary" or body.include? "about"
     json = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
     message = "Here's what Sharon is about!\n\n"

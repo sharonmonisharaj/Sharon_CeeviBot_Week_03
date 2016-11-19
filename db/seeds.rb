@@ -148,7 +148,7 @@ WorkDetail.create!([{
   company: "Hidesign Luxury Leather",
   started_on: Time.new(2011, 5),
   completed_on: Time.new(2011, 6),
-  job_description: "As part of a campaign by Hidesign called 'Art of Reuse' , the task was to design a dustbin and a stool for customers, to be used in all the Hidesign showrooms. The materials to be used for this purpose were to be scrap leather produced as a by-product in the bag-making unit and recycled brass and wood. Images available in my portfolio. Please click on the link to view the same.",
+  job_description: "As part of a campaign by Hidesign called 'Art of Reuse' , the task was to design a dustbin and a stool for customers, to be used in all the Hidesign showrooms. The materials to be used for this purpose were to be scrap leather produced as a by-product in the bag-making unit and recycled brass and wood.",
   location: "Pondicherry, India", 
   internship: "true"
 },
