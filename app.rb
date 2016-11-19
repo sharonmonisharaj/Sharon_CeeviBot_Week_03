@@ -514,7 +514,7 @@ get '/incoming_sms' do
     end
 
   # To display a random project with description and the link to view it on her online portfolio
-  elsif body.include? "random project"
+  elsif body.include? "random"
     message = "Here's an interesting project that Sharon has worked on!"
     random = Project.all.sample(1).first
       message += "\n\n#{random.title}\n\nDESCRIPTION: #{random.description}\n\n"
