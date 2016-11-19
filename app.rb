@@ -325,7 +325,7 @@ get '/incoming_sms' do
     message += "Sharon worked as an Interaction Designer for "
     message += BasicDetail.all[9].description
     message += " in Trimble Navigation, Chennai."
-    message += "Ask me about her internships!"
+    message += " Ask me about her internships!"
 
 # -------------------------------------------------------------------------------------------
 
