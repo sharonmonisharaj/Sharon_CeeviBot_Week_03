@@ -247,6 +247,16 @@ get '/incoming_sms' do
   elsif body.include? "dumb" or body.include? "stupid" or body.include? "idiot" or body.include? "fuc" or body.include? "fool" or body.include? "gger" or body.include? "egro" or body.include? "astard" or body.include? "oundrel" or body.include? "ascal"
     POLITE = ["Please be polite.", "I'm sorry, that's not the kind of language I am comfortable with.", "I have feelings too you know.", "Uh oh, Sharon wouldn't be happy if she heard that.", "I'm going to pretend I didn't hear that.", "I'm sure I misheard you. There's no way you could have said that to me!"]
     message = POLITE.sample
+ 
+  # If compliments are given
+  elsif body.include? "awesome" or body.include? "great" or body.include? "cool" or body.include? "sweet" or body.include? "amazing" or body.include? "wonderful" or body.include? "spectacular"
+    THANK = ["😀 I know I'm awesome. But hey! So are you!"]#, "😊 That's nice of you to say!", "😌 You're too kind."]
+    message = "Thank you! " + THANK.sample
+ 
+  # Saying goodbye
+  elsif body.include? "bye" or body.include? "aurevoir" or body.include? "ciao" or body.include? "farewell" or body.include? "seeyou"
+    FAREWELL = ["🤓 Goodbye, dear friend!", "See you! 🙃 Hope we get to chat again soon!", "This was fun! 😀 We should totally do this again! Bye for now!", "Till we meet again, goodbye good luck and godspeed to you my friend! 😊"]
+    message = FAREWELL.sample
   
   # If the user needs help  
   elsif body.include? "help"
@@ -430,7 +440,7 @@ get '/incoming_sms' do
   end
   
   # To display information about Sharon's master's degree 
-  elsif body.include? "master\'s" or body.include? "masters" or body.include? "graduate"
+  elsif body.include? "master\'s" or body.include? "masters"
     message = ""
     education_detail_array = EducationDetail.all.where( "institute LIKE ?", "%carnegie mellon university%" )
     education_detail_array.each do |record|
