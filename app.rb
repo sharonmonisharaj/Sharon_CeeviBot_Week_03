@@ -355,12 +355,11 @@ get '/incoming_sms' do
 
   # To display information about Sharon's job at Hidesign
   elsif body.include? "hidesign"
-    message = ""
     # work_details = WorkDetail.all.where( "company LIKE ?", "%hidesign%" )
     work_details = WorkDetail.all
     #work_details.each_with_index do |record,index|
     record = work_details[0]
-      message += "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}.\n\n"
+      message = "Sharon worked at #{record.company} in #{record.location} as #{record.job_title}.\n\n"
       message += "JOB DESCRIPTION:\n #{record.job_description}"
       #end
   
