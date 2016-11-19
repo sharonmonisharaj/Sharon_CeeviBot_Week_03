@@ -1,3 +1,5 @@
+# Requiring gems
+
 require "sinatra"
 require 'active_support/all'
 require 'active_support/core_ext'
@@ -9,12 +11,11 @@ require 'twilio-ruby'
 require 'rake'
 require 'giphy'
 require 'httparty'
-#require 'behance'
 
 # -------------------------------------------------------------------------------------------
 
-# Load environment variables using Dotenv. If a .env file exists, it will
-# set environment variables from that file (useful for dev environments)
+# Loading environment variables using Dotenv
+
 configure :development do
   require 'dotenv'
   Dotenv.load
@@ -22,10 +23,8 @@ end
 
 # -------------------------------------------------------------------------------------------
 
-# require any models 
-# you add to the folder
-# using the following syntax:
-# require_relative './models/<model_name>'
+# Requiring models
+
 require_relative './models/basic_detail'
 require_relative './models/education_detail'
 require_relative './models/interest'
@@ -36,17 +35,14 @@ require_relative './models/award'
 
 # -------------------------------------------------------------------------------------------
 
-# enable sessions for this project
+# Enabling sessions for this project
+
 enable :sessions
-
 client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
-
-# initializing the client
-#client = Behance::Client.new(access_token: "dxM9p6oMEBAeYx7c7Sj0UNQtzCXcYRqR")
 
 
 # -------------------------------------------------------------------------------------------
-#     ROUTES, END POINTS AND ACTIONS
+#     ROUTES, END-POINTS AND ACTIONS
 # -------------------------------------------------------------------------------------------
 
 
@@ -58,6 +54,7 @@ end
 
 
 # -------------------------------------------------------------------------------------------
+#     T0 TEST IF MESSAGES ARE GETTING SENT
 # -------------------------------------------------------------------------------------------
 
 
@@ -74,36 +71,7 @@ end
 
 
 # -------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------
-
-
-# get "/incoming_sms" do
-#
-#   session["counter"] ||= 0
-#   sms_count = session["counter"]
-#
-#   sender = params[:From] || ""
-#   body = params[:Body] || ""
-#
-#   if sms_count == 0
-#     message = "Hello and thanks for the new message!"
-#
-#   else
-#     message = "Hello and thanks for the #{sms_count + 1} message you've sent today!"
-#   end
-#
-#   twilm = Twilio::TwiML::Response.new do |response|
-#     #response.Message "Thanks for your message. From #{sender} saying #{body}"
-#     response.Message message
-#   end
-#
-#   session["counter"] += 1
-#   twilm.text
-#
-# end
-
-
-# -------------------------------------------------------------------------------------------
+#     ALL INTERACTIONS WITH CEEVIBOT ARE HANDLED HERE
 # -------------------------------------------------------------------------------------------
 
 
@@ -122,12 +90,12 @@ get '/incoming_sms' do
     
 # -------------------------------------------------------------------------------------------
   
-# If the user wants to play a game!
+# If the user wants to play a guessing game!
     
   elsif body == "quiz"
     session["last_context"] = "quiz"
     session["guess_it"] = rand(1...5)
-    message = "Guess what number I'm thinking of. It's between 1 and 5"
+    message = "Let's play! Guess what number I'm thinking of. It's between 1 and 5"
   elsif session["last_context"] == "play"
     
     # if it's not a number 
@@ -145,24 +113,59 @@ get '/incoming_sms' do
   
 # Hard-coded SMS responses
     
+  elsif body.include? "name"
+    INTRODUCTION = [ "My name is CeeviBot.", "CeeviBot at your service!", "I'm CeeviBot!" ]
+    message = INTRODUCTION.sample
+    
   elsif body.include? "who"
-    message = "Im a bot created by Sharon. I'm her favorite one!"
+    message = "I am a bot created by Sharon. I'm her favorite one!"
     
   elsif body.include? "purpose" or body.include? "goal"
-    message = "It is my life's goal to tell anyone who would listen about Sharon's exciting Curriculum Vitae! Ask me anything you would like to know!"
+    message = "It is my life's goal to tell wonderful people like you about Sharon's exciting Curriculum Vitae!" 
+    message += "Ask me anything you would like to know!"
   
   elsif body.include? "when" or body.include? "time"    
     #message = Time.now.strftime( "It's %A %B %e, %Y")
     message = "I was created on November 6, 2016."
   
   elsif body.include? "where"    
-    message = "I was created in Pittsburgh when Sharon was pursuing her Master's degree in Human-Computer Interaction at Carnegie Mellon University."
+    message = "I was created in Pittsburgh when Sharon was pursuing her Master's degree in Human-Computer Interaction "
+    message += "at Carnegie Mellon University."
   
   elsif body.include? "why"    
     message = "Sharon created me to help you learn more about her and what she has to offer to your company."
     
   elsif body.include? "time"    
     message = Time.now.strftime( "It's %A %B %e, %Y")
+    
+  elsif body.include? "color"
+    message = "Sharon's favorite color is red!"
+    
+  elsif body.include? "fruit"
+    message = "Apples are Sharon's favorite fruit!"
+    
+  elsif body.include? "city"
+    message = "Sharon would love to live in Mountain View, CA one day."
+    
+  elsif body.include? "ambition"
+    message = "Sharon's ambition is to make the world a better place through design."
+    
+  elsif body.include? "food" or body.include? "meal"
+    message = "Not many people know this, but Sharon is a big foodie! Breakfast is her absolute favorite meal of the day!"
+    message += "She loves spicy Indian and Chinese food and fresh American salads."
+    message += "Most importantly, she does love the occassional sweet treat!"
+    
+  elsif body.include? "holiday" or body.include? "festival"
+    message = "Christmas is Sharon's favorite holiday. Not only does it hold religious importance for her, "
+    message += "but also she loves the spirit of joy and togetherness that the holiday brings!"
+    
+  elsif body.include? "relax" or body.include? "workout" or body.include? "exercise" or body.include? "gym"
+    message = "Sharon loves working out in the gym! When she feels stressed out, she goes to the gym!"
+    message += "I don't workout much so I just don't understand how she finds that place relaxing!"
+    
+  elsif body.include? "movie" or body.include? "film"
+    message = "Sharon's favorite film is 'The Wizard of Oz'!"
+    
     
 # -------------------------------------------------------------------------------------------
 # Retrieving information from the linked database to be used as SMS responses.
@@ -357,7 +360,6 @@ get '/incoming_sms' do
       message += "\n\n#{random.title}\n\nDESCRIPTION: #{random.description}\n\n"
       message += "Portfolio Link: #{random.url}\n\n"
 
-      
 # -------------------------------------------------------------------------------------------
 
 # Connecting to Behance API using the gem httparty.
@@ -420,47 +422,7 @@ end
 
 
 # -------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------
-
-#
-# get '/incoming_sms_giphy' do
-#
-#   session["last_context"] ||= nil
-#
-#   sender = params[:From] || ""
-#   body = params[:Body] || ""
-#   query = body.downcase.strip
-#
-#   Giphy::Configuration.configure do |config|
-#     config.api_key = ENV["GIPHY_API_KEY"]
-#   end
-#
-#   results = Giphy.search( query, {limit: 3})
-#   gif = nil
-#   unless results.empty?
-#
-#     gif = results.first.original_image.url
-#     text = "Powered by Giphy.com and Twilio MMS: twilio.com/mms"
-#
-#   else
-#
-#     message = "Hmmm, that's odd. I couldn't find anything for '#{query}'. Try something else?"
-#   end
-#
-#   twiml = Twilio::TwiML::Response.new do |r|
-#     r.Message do |m|
-#         m.Body message
-#         unless gif.nil?
-#             m.Media gif
-#         end
-#     end
-#   end
-#   twiml.text
-#
-# end
-
-# -------------------------------------------------------------------------------------------
-#     ERRORS
+#   ERRORS
 # -------------------------------------------------------------------------------------------
 
 
@@ -468,32 +430,16 @@ error 401 do
   "Not allowed!!!"
 end
 
-# get '/test' do
-#   get_personal_info_from_behance
-# end
-
 
 # -------------------------------------------------------------------------------------------
 #   METHODS
-#   Add any custom methods below
 # -------------------------------------------------------------------------------------------
 
 private 
 
-#
-# def get_personal_info_from_behance
-#
-#   message = HTTParty.get("https://api.behance.net/v2/users/sharonmonisharaj?client_id=z7ceYH2Sfb0Qea7nIW5xuEMui44ESMLd")
-#   json = message.body
-#
-#   user = json["user"]
-#   user["first_name"].to_s
-# end
-
-
 GREETINGS = ["Hi","Yo", "Hey","Howdy", "Hello", "Ahoy", "‘Ello", "Aloha", "Hola", "Bonjour", "Hallo", "Ciao", "Konnichiwa"]
 
-COMMANDS = "who, what, where, when, why, age, marital status, parents, job, internship, education, interests, skills, awards or quiz."
+COMMANDS = "who, what, where, when, why, age, marital status, parents, job, internship, education, interests, skills, awards or play."
 
 def get_commands
   error_prompt = ["You could ask about ", "Try asking about ", "You can ask me about ", "I can tell you about ", "I'm awesome at answering questions about "].sample
@@ -517,3 +463,5 @@ def error_response
   error_prompt = ["I'm sorry, I didn't catch that.", "Hmmm... I don't know that word.", "Could you please rephrase that? "].sample
   error_prompt + " " + get_commands
 end
+
+# -------------------------------------------------------------------------------------------
