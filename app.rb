@@ -117,6 +117,10 @@ get '/incoming_sms' do
   elsif body.include? "are you"
     INTRODUCTION = [ "My name is CeeviBot.", "CeeviBot at your service!", "I'm CeeviBot!" ]
     message = INTRODUCTION.sample
+    
+  # To say CeeviBot's name
+  elsif body.include? "ceevibot"
+    message = "That's my name!"
   
   # To display CeeviBot's creator's name  
   elsif body.include? "creator" or body.include? "maker" or body.include? "made you"
@@ -366,7 +370,7 @@ get '/incoming_sms' do
   
   # To display information about Sharon's foreign work experience  
   elsif body == "designtech" or body.include? "german" or body.include? "abroad" or body.include? "foreign"
-    # work_details = WorkDetail.all.where( "company LIKE ?", "%design tech%" )
+    # work_details = WorkDetail.all.where( "company LIKE ?", "%design tech%" )."
     # work_details.each_with_index do |record,index|
     work_details = WorkDetail.all
     record = work_details[1]
