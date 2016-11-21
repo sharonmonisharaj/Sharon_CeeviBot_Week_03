@@ -609,8 +609,7 @@ end
 
 private 
 
-GREETINGS = ["Hi","Yo", "Hey","Howdy", "Hello", "Ahoy", 
-  "‘Ello", "Aloha", "Hola", "Bonjour", "Ciao", "Konnichiwa"]
+GREETINGS = ["Hi", "Yo", "Hey", "Howdy", "Hello", "Ahoy", "Hey there", "Hello there"]
 
 COMMANDS = "Sharon's likes, dislikes, beliefs, work experience, internships, education, skills, awards, age, marital status, parents and the what, where, when and why of my existence. 
 \nWe can also play a game if you said 'play'!"
@@ -640,7 +639,7 @@ def get_greeting
 end
 
 def get_about_message
-  get_greeting + "! I\'m Sharon's CeeviBot 🤖!\n" + get_commands
+  get_greeting + "! I\'m Sharon's CeeviBot 🤖!\n\n" + get_commands
 end
 
 def get_help_message
