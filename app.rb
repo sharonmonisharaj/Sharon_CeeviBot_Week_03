@@ -271,7 +271,7 @@ get '/incoming_sms' do
  
   # Saying goodbye
   elsif body.include? "bye" or body.include? "aurevoir" or body.include? "ciao" or body.include? "farewell" or body.include? "see you" or body.include? "gtg" or body.include? "got to go"
-    FAREWELL = ["🤓 Goodbye, dear friend!", "See you! 🙃 Hope we get to chat again soon!", "This was fun! 😀 We should totally do this again! Bye for now!", "Till we meet again, goodbye good luck and godspeed to you my friend! 😊"]
+    FAREWELL = ["🤓 Goodbye, dear friend!", "See you! 🙃 Hope we get to chat again soon!", "This was fun! 😀 We should totally do this again! Bye for now!", "Till we meet again, goodbye, good luck and godspeed to you my friend! 😊"]
     message = FAREWELL.sample
   
   # If the user needs help  
