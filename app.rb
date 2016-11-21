@@ -613,7 +613,7 @@ GREETINGS = ["Hi","Yo", "Hey","Howdy", "Hello", "Ahoy",
   "‘Ello", "Aloha", "Hola", "Bonjour", "Ciao", "Konnichiwa"]
 
 COMMANDS = "Sharon's likes, dislikes, beliefs, work experience, internships, education, skills, awards, age, marital status, parents and the what, where, when and why of my existence. 
-We can also play a game if you said 'play'!"
+\n\nWe can also play a game if you said 'play'!"
 
 HELP = ["You're stuck, eh? ", "I know I can be difficult at times.\n\n", 
   "I'm sorry that I'm giving you a hard time.\n\n", 
@@ -648,9 +648,9 @@ def get_help_message
 end
 
 def error_response
-  error_prompt = ["I'm sorry, I didn't catch that.\n", "Hmmm... I'm not sure what you mean.\n", 
-    "Could you please rephrase that?\n"].sample
-  error_prompt + " " + get_commands + " Or if you prefer, call and ask Sharon herself at +1-412-726-8237!"
+  error_prompt = ["I'm sorry, I didn't catch that.\n\n", "Hmmm... I'm not sure what you mean.\n\n", 
+    "Could you please rephrase that?\n\n"].sample
+  error_prompt + get_commands + "\n\nOr if you prefer, call and ask Sharon herself at +1-412-726-8237!"
 end
 
 # -------------------------------------------------------------------------------------------
