@@ -650,7 +650,7 @@ end
 def error_response
   error_prompt = ["I'm sorry, I didn't catch that.\n", "Hmmm... I'm not sure what you mean.\n", 
     "Could you please rephrase that?\n"].sample
-  error_prompt + " " + get_commands
+  error_prompt + " " + get_commands + " Or if you prefer, call and ask Sharon herself at +1-412-726-8237!"
 end
 
 # -------------------------------------------------------------------------------------------
